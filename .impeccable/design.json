@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T02:22:21+00:00",
+  "title": "Design System: Imran Azlan · Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Platform Floor",
+        "canonical": "#eef2f6",
+        "oklch": "oklch(95.9% 0.007 247.9)",
+        "tonalRamp": [
+          "#090b0e",
+          "#222528",
+          "#3f4246",
+          "#5e6265",
+          "#7f8386",
+          "#a2a5a9",
+          "#c6cacd",
+          "#ebeff3"
+        ],
+        "dark": "#0b1220"
+      },
+      "ground-tile": {
+        "role": "neutral",
+        "displayName": "Tile Joint",
+        "canonical": "#e2e8ef",
+        "oklch": "oklch(92.8% 0.011 252.1)",
+        "tonalRamp": [
+          "#080c10",
+          "#21262b",
+          "#3e4248",
+          "#5d6268",
+          "#7d8389",
+          "#a0a6ac",
+          "#c4cad1",
+          "#e9eff6"
+        ],
+        "dark": "#111a2a"
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Enamel",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ],
+        "dark": "#121c2e"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#d3dae3",
+        "oklch": "oklch(88.6% 0.015 254.6)",
+        "tonalRamp": [
+          "#070b11",
+          "#20262c",
+          "#3d434a",
+          "#5c626a",
+          "#7d838b",
+          "#9fa6ae",
+          "#c3cad3",
+          "#e8eff8"
+        ],
+        "dark": "#26344c"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Navy Ink",
+        "canonical": "#0d1b2e",
+        "oklch": "oklch(22.0% 0.042 256.4)",
+        "tonalRamp": [
+          "#060b13",
+          "#1c2632",
+          "#364355",
+          "#526279",
+          "#72849c",
+          "#94a7c0",
+          "#bbcbe0",
+          "#e4f0ff"
+        ],
+        "dark": "#e8edf5"
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Slate Ink",
+        "canonical": "#4a5970",
+        "oklch": "oklch(46.1% 0.042 258.8)",
+        "tonalRamp": [
+          "#070b13",
+          "#1d2532",
+          "#374355",
+          "#536279",
+          "#73839c",
+          "#95a6c0",
+          "#bccae0",
+          "#e4efff"
+        ],
+        "dark": "#9fb0c6"
+      },
+      "line": {
+        "role": "primary",
+        "displayName": "Line Cobalt",
+        "canonical": "#1546d1",
+        "oklch": "oklch(46.5% 0.219 264.2)",
+        "tonalRamp": [
+          "#000134",
+          "#021767",
+          "#0c32a0",
+          "#1c4fdb",
+          "#3c75ff",
+          "#5d9bff",
+          "#8ec5ff",
+          "#c1edff"
+        ],
+        "dark": "#2453e0"
+      },
+      "line-strong": {
+        "role": "primary",
+        "displayName": "Deep Line",
+        "canonical": "#0f37a8",
+        "oklch": "oklch(39.7% 0.185 264.2)",
+        "tonalRamp": [
+          "#00052d",
+          "#061d5d",
+          "#153892",
+          "#2856c8",
+          "#487af0",
+          "#699fff",
+          "#97c7ff",
+          "#c8eeff"
+        ],
+        "dark": "#3a68f0"
+      },
+      "line-text": {
+        "role": "primary",
+        "displayName": "Line Lettering",
+        "canonical": "#1546d1",
+        "oklch": "oklch(46.5% 0.219 264.2)",
+        "tonalRamp": [
+          "#000134",
+          "#021767",
+          "#0c32a0",
+          "#1c4fdb",
+          "#3c75ff",
+          "#5d9bff",
+          "#8ec5ff",
+          "#c1edff"
+        ],
+        "dark": "#7ea2ff"
+      },
+      "line-pale": {
+        "role": "primary",
+        "displayName": "Line Pale",
+        "canonical": "#dbe5ff",
+        "oklch": "oklch(92.2% 0.037 268.9)",
+        "tonalRamp": [
+          "#080b12",
+          "#202531",
+          "#3b4253",
+          "#586177",
+          "#798299",
+          "#9ba5bd",
+          "#c1c9dd",
+          "#e8eefe"
+        ]
+      },
+      "line-ahead": {
+        "role": "primary",
+        "displayName": "Line Ahead",
+        "canonical": "#c4d0e6",
+        "oklch": "oklch(85.5% 0.033 262.7)",
+        "tonalRamp": [
+          "#080b12",
+          "#202530",
+          "#3a4251",
+          "#576275",
+          "#788397",
+          "#9aa6bb",
+          "#c0cadb",
+          "#e7effd"
+        ],
+        "dark": "#2a3953"
+      },
+      "on-line": {
+        "role": "primary",
+        "displayName": "On Line",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "edge": {
+        "role": "tertiary",
+        "displayName": "Platform Edge",
+        "canonical": "#ffd23f",
+        "oklch": "oklch(87.9% 0.162 90.9)",
+        "tonalRamp": [
+          "#160700",
+          "#382000",
+          "#5d3b00",
+          "#835900",
+          "#a77c00",
+          "#cb9f00",
+          "#e9c65c",
+          "#ffeda0"
+        ]
+      },
+      "sign-dark": {
+        "role": "neutral",
+        "displayName": "Night Sign",
+        "canonical": "#0d1b2e",
+        "oklch": "oklch(22.0% 0.042 256.4)",
+        "tonalRamp": [
+          "#060b13",
+          "#1c2632",
+          "#364355",
+          "#526279",
+          "#72849c",
+          "#94a7c0",
+          "#bbcbe0",
+          "#e4f0ff"
+        ],
+        "dark": "#0b1324"
+      },
+      "sign-dark-hover": {
+        "role": "neutral",
+        "displayName": "Night Sign Hover",
+        "canonical": "#182a45",
+        "oklch": "oklch(28.4% 0.055 258.3)",
+        "tonalRamp": [
+          "#050b16",
+          "#1a2536",
+          "#33435b",
+          "#4e6281",
+          "#6e84a4",
+          "#90a7c8",
+          "#b8cbe7",
+          "#e1f0ff"
+        ],
+        "dark": "#16223a"
+      },
+      "lightbox": {
+        "role": "neutral",
+        "displayName": "Lightbox",
+        "canonical": "#dbe5ff",
+        "oklch": "oklch(92.2% 0.037 268.9)",
+        "tonalRamp": [
+          "#080b12",
+          "#202531",
+          "#3b4253",
+          "#586177",
+          "#798299",
+          "#9ba5bd",
+          "#c1c9dd",
+          "#e8eefe"
+        ],
+        "dark": "#16244a"
+      },
+      "alu": {
+        "role": "neutral",
+        "displayName": "Aluminium",
+        "canonical": "#d6dce4",
+        "oklch": "oklch(89.2% 0.013 255.5)",
+        "tonalRamp": [
+          "#080b11",
+          "#21252b",
+          "#3e4249",
+          "#5d6269",
+          "#7d838a",
+          "#a0a6ad",
+          "#c4cad2",
+          "#e9eff7"
+        ],
+        "dark": "#2a3850"
+      },
+      "screen": {
+        "role": "neutral",
+        "displayName": "Screen",
+        "canonical": "#e6ecf5",
+        "oklch": "oklch(94.1% 0.014 258.3)",
+        "tonalRamp": [
+          "#080b11",
+          "#21252c",
+          "#3e4249",
+          "#5c6269",
+          "#7d838b",
+          "#a0a5ae",
+          "#c4cad2",
+          "#e9eff8"
+        ],
+        "dark": "#1a2639"
+      },
+      "device": {
+        "role": "neutral",
+        "displayName": "Hardware Bezel",
+        "canonical": "#0d1b2e",
+        "oklch": "oklch(22.0% 0.042 256.4)",
+        "tonalRamp": [
+          "#060b13",
+          "#1c2632",
+          "#364355",
+          "#526279",
+          "#72849c",
+          "#94a7c0",
+          "#bbcbe0",
+          "#e4f0ff"
+        ],
+        "dark": "#060b14"
+      },
+      "device-chrome": {
+        "role": "neutral",
+        "displayName": "Browser Chrome",
+        "canonical": "#1c2a40",
+        "oklch": "oklch(28.4% 0.045 259.2)",
+        "tonalRamp": [
+          "#060b14",
+          "#1d2533",
+          "#364356",
+          "#52627b",
+          "#72839e",
+          "#94a6c2",
+          "#bbcae1",
+          "#e4efff"
+        ]
+      },
+      "device-light": {
+        "role": "neutral",
+        "displayName": "Browser Lights",
+        "canonical": "#34445c",
+        "oklch": "oklch(38.3% 0.046 258.3)",
+        "tonalRamp": [
+          "#060b14",
+          "#1c2533",
+          "#354357",
+          "#51627c",
+          "#72849e",
+          "#94a6c2",
+          "#bbcae2",
+          "#e3f0ff"
+        ]
+      },
+      "device-text": {
+        "role": "neutral",
+        "displayName": "Browser URL Text",
+        "canonical": "#b9c6d8",
+        "oklch": "oklch(82.2% 0.029 256.5)",
+        "tonalRamp": [
+          "#080b11",
+          "#1f262e",
+          "#3a434f",
+          "#576272",
+          "#778394",
+          "#9aa6b8",
+          "#c0cad9",
+          "#e7effb"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The name on the hero board only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Station headings, feature project names, concourse title."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project names, experience places, plaque names."
+      },
+      "title-sm": {
+        "displayName": "Title Small",
+        "purpose": "Hero role line and hero Email sign."
+      },
+      "body-lg": {
+        "displayName": "Body Large",
+        "purpose": "Intros, summaries, the pitch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text and lists."
+      },
+      "body-sm": {
+        "displayName": "Body Small",
+        "purpose": "Footer."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Dates, fact keys, stack lines, sign details."
+      },
+      "code-tag": {
+        "displayName": "Code Tag",
+        "purpose": "Station codes, roundels, strip stop codes."
+      }
+    },
+    "themes": {
+      "dark": {
+        "trigger": "@media (prefers-color-scheme: dark)",
+        "note": "Same roles re-lit; edge, line-pale and on-line unchanged. Light is the reference.",
+        "colors": {
+          "ground": "#0b1220",
+          "ground-tile": "#111a2a",
+          "panel": "#121c2e",
+          "rule": "#26344c",
+          "ink": "#e8edf5",
+          "ink-2": "#9fb0c6",
+          "line": "#2453e0",
+          "line-strong": "#3a68f0",
+          "line-text": "#7ea2ff",
+          "line-ahead": "#2a3953",
+          "device": "#060b14",
+          "device-rim": "#2c3a52",
+          "alu": "#2a3850",
+          "screen": "#1a2639",
+          "lightbox": "#16244a",
+          "sign-dark": "#0b1324",
+          "sign-dark-hover": "#16223a"
+        },
+        "shadows": [
+          {
+            "name": "sign",
+            "value": "0 1px 2px rgb(0 0 0 / 0.4), 0 12px 30px -14px rgb(0 0 0 / 0.7)"
+          },
+          {
+            "name": "lift",
+            "value": "0 2px 4px rgb(0 0 0 / 0.4), 0 24px 44px -18px rgb(0 0 0 / 0.8)"
+          }
+        ]
+      }
+    },
+    "shadows": [
+      {
+        "name": "sign",
+        "value": "0 1px 2px rgb(13 27 46 / 0.08), 0 10px 28px -12px rgb(13 27 46 / 0.22)",
+        "purpose": "Every enamel panel, plaque and lightbox frame."
+      },
+      {
+        "name": "lift",
+        "value": "0 2px 4px rgb(13 27 46 / 0.12), 0 22px 40px -18px rgb(13 27 46 / 0.45)",
+        "purpose": "Phones, browser frames and the framed portrait."
+      },
+      {
+        "name": "focus",
+        "value": "outline: 3px solid var(--edge); outline-offset: 3px; box-shadow: 0 0 0 3px var(--ink)",
+        "purpose": "Platform-edge focus band on every focusable element."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Every transition."
+      },
+      {
+        "name": "color",
+        "value": "0.2s",
+        "purpose": "Background and color changes on signs and buttons."
+      },
+      {
+        "name": "marker",
+        "value": "0.25s",
+        "purpose": "Route strip marker and travelled stretch; follows scroll directly under reduced motion."
+      },
+      {
+        "name": "arrow-nudge",
+        "value": "0.3s",
+        "purpose": "Arrow tiles translate 0.2rem to 0.25rem right on hover."
+      },
+      {
+        "name": "phone-in",
+        "value": "0.9s, 0.12s stagger",
+        "purpose": "Hero phones rise 1.5rem on load; off under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "xs",
+        "value": "30rem"
+      },
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "md",
+        "value": "48rem"
+      },
+      {
+        "name": "lg",
+        "value": "56rem"
+      },
+      {
+        "name": "xl",
+        "value": "64rem"
+      }
+    ],
+    "layout": {
+      "container": "min(100% - 2 * var(--gutter), 78rem)",
+      "gutter": "1rem; 2rem from 48rem",
+      "stripHeight": "3.75rem; 4.75rem from 48rem",
+      "floorGrid": "1px ground-tile joints every 4rem, anchored center top"
+    }
+  },
+  "components": [
+    {
+      "name": "Email Sign",
+      "kind": "button",
+      "refersTo": "email-sign",
+      "description": "The one primary action: a cobalt wayfinding panel with a white arrow tile.",
+      "html": "<a class=\"ds-email-sign\" href=\"#\"><span class=\"ds-email-sign__label\">Email me</span><span class=\"ds-email-sign__arrow\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></span></a>",
+      "css": ".ds-email-sign{display:inline-flex;align-items:stretch;min-height:4rem;border-radius:6px;background:var(--line,#1546d1);color:var(--on-line,#fff);font-family:Barlow,system-ui,sans-serif;font-size:1.5rem;font-weight:700;text-decoration:none;box-shadow:0 1px 2px rgb(13 27 46/.2),0 12px 24px -12px var(--line,#1546d1);transition:background-color .2s cubic-bezier(.16,1,.3,1),transform .2s cubic-bezier(.16,1,.3,1);}.ds-email-sign__label{display:flex;align-items:center;padding:0 2rem;}.ds-email-sign__arrow{display:grid;place-items:center;width:4rem;margin:.375rem;border-radius:4px;background:var(--panel,#fff);color:var(--line-text,#1546d1);transition:transform .3s cubic-bezier(.16,1,.3,1);}.ds-email-sign:hover{background:var(--line-strong,#0f37a8);}.ds-email-sign:hover .ds-email-sign__arrow{transform:translateX(.25rem);}.ds-email-sign:active{transform:translateY(1px);}.ds-email-sign:focus-visible{outline:3px solid var(--edge,#ffd23f);outline-offset:3px;box-shadow:0 0 0 3px var(--ink,#0d1b2e);}"
+    },
+    {
+      "name": "Direction Sign",
+      "kind": "nav",
+      "refersTo": "direction-sign",
+      "description": "Navy secondary-contact sign on the blue concourse: pictogram, label, detail, arrow.",
+      "html": "<div class=\"ds-concourse\"><a class=\"ds-direction\" href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m3.5 6.5 8.5 6.5 8.5-6.5\"/></svg><span class=\"ds-direction__words\"><span class=\"ds-direction__label\">LinkedIn</span><span class=\"ds-direction__detail\">in/imranazlan</span></span><span class=\"ds-direction__arrow\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg></span></a></div>",
+      "css": ".ds-concourse{padding:1.5rem;background:var(--line,#1546d1);}.ds-direction{display:flex;align-items:center;gap:1rem;min-height:4.5rem;padding:.75rem 1.5rem;border-radius:6px;background:var(--sign-dark,#0d1b2e);color:var(--on-line,#fff);font-family:Barlow,system-ui,sans-serif;text-decoration:none;transition:background-color .2s cubic-bezier(.16,1,.3,1);}.ds-direction:hover{background:var(--sign-dark-hover,#182a45);}.ds-direction__words{display:flex;flex:1;flex-direction:column;line-height:1.2;}.ds-direction__label{font-size:1.25rem;font-weight:700;}.ds-direction__detail{color:var(--line-pale,#dbe5ff);font-family:'Barlow Condensed',Barlow,sans-serif;font-size:1rem;font-weight:600;}.ds-direction__arrow{display:flex;transition:transform .3s cubic-bezier(.16,1,.3,1);}.ds-direction:hover .ds-direction__arrow{transform:translateX(.2rem);}.ds-direction:focus-visible{outline:3px solid var(--edge,#ffd23f);outline-offset:3px;box-shadow:0 0 0 3px var(--ink,#0d1b2e);}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "button",
+      "refersTo": null,
+      "description": "Secondary action: navy lettering, rule-colored underline, pictogram; turns cobalt on hover.",
+      "html": "<a class=\"ds-link\" href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M4 12h15M13 6l6 6-6 6\"/></svg><span>Download CV</span></a>",
+      "css": ".ds-link{display:inline-flex;align-items:center;gap:.5rem;min-height:2.75rem;color:var(--ink,#0d1b2e);font-family:Barlow,system-ui,sans-serif;font-weight:600;text-decoration-color:var(--rule,#d3dae3);text-decoration-thickness:.08em;text-underline-offset:.22em;}.ds-link:hover{color:var(--line-text,#1546d1);text-decoration-color:currentColor;}.ds-link:focus-visible{outline:3px solid var(--edge,#ffd23f);outline-offset:3px;box-shadow:0 0 0 3px var(--ink,#0d1b2e);}"
+    },
+    {
+      "name": "Station Heading",
+      "kind": "custom",
+      "refersTo": "station-code",
+      "description": "Section title set like a station sign: inline cobalt code tag, then the name.",
+      "html": "<h2 class=\"ds-station\"><span class=\"ds-code\">IA02</span><span>Shipped apps</span></h2>",
+      "css": ".ds-station{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1rem;margin:0;color:var(--ink,#0d1b2e);font-family:Barlow,system-ui,sans-serif;font-size:clamp(2.25rem,1.6rem + 2.4vw,3.25rem);font-weight:800;line-height:1.05;letter-spacing:-.015em;}.ds-code{display:inline-flex;align-items:center;justify-content:center;min-width:3.4em;padding:.2em .45em .15em;border-radius:.35em;background:var(--line,#1546d1);color:var(--on-line,#fff);font-family:'Barlow Condensed',Barlow,sans-serif;font-size:1.125rem;font-weight:700;letter-spacing:.02em;line-height:1;font-variant-numeric:tabular-nums;}"
+    },
+    {
+      "name": "Route Strip",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Signature sticky strip map: travelled cobalt stretch, ringed stops, yellow marker on the current stop.",
+      "html": "<nav class=\"ds-strip\" style=\"--n:4;--p:1\"><div class=\"ds-strip__rail\"></div><div class=\"ds-strip__done\"></div><div class=\"ds-strip__marker\"></div><ol class=\"ds-strip__stops\"><li class=\"is-passed\"><a href=\"#\"><span class=\"ds-strip__dot\"></span><span><b>IA01</b> Start</span></a></li><li class=\"is-current\"><a href=\"#\" aria-current=\"location\"><span class=\"ds-strip__dot\"></span><span><b>IA02</b> Apps</span></a></li><li><a href=\"#\"><span class=\"ds-strip__dot\"></span><span><b>IA03</b> Experience</span></a></li><li><a href=\"#\"><span class=\"ds-strip__dot\"></span><span><b>IA04</b> Skills</span></a></li></ol></nav>",
+      "css": ".ds-strip{position:relative;height:4.75rem;background:var(--ground,#eef2f6);border-block:1px solid var(--rule,#d3dae3);font-family:Barlow,system-ui,sans-serif;}.ds-strip__rail,.ds-strip__done{position:absolute;top:1.1875rem;left:calc(50%/var(--n));height:.375rem;border-radius:999px;}.ds-strip__rail{right:calc(50%/var(--n));background:var(--line-ahead,#c4d0e6);}.ds-strip__done{width:calc(var(--p)/var(--n)*100%);background:var(--line,#1546d1);transition:width .25s cubic-bezier(.16,1,.3,1);}.ds-strip__marker{position:absolute;z-index:2;top:1.375rem;left:calc((var(--p) + .5)/var(--n)*100%);width:1.375rem;height:1.375rem;border-radius:50%;background:var(--edge,#ffd23f);box-shadow:0 0 0 .1875rem var(--ink,#0d1b2e),0 4px 10px rgb(13 27 46/.35);transform:translate(-50%,-50%);transition:left .25s cubic-bezier(.16,1,.3,1);}.ds-strip__stops{position:relative;display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));height:100%;margin:0;padding:0;list-style:none;}.ds-strip__stops a{display:flex;flex-direction:column;align-items:center;gap:.5rem;height:100%;padding-top:.9375rem;color:var(--ink-2,#4a5970);text-decoration:none;font-weight:600;}.ds-strip__stops b{font-family:'Barlow Condensed',Barlow,sans-serif;font-size:.875rem;font-weight:700;}.ds-strip__dot{width:.875rem;height:.875rem;border-radius:50%;background:var(--panel,#fff);box-shadow:0 0 0 .1875rem var(--line-ahead,#c4d0e6);}.is-passed .ds-strip__dot{box-shadow:0 0 0 .1875rem var(--line,#1546d1);}.ds-strip__stops a:hover{color:var(--ink,#0d1b2e);}.ds-strip__stops a:hover .ds-strip__dot{box-shadow:0 0 0 .1875rem var(--ink,#0d1b2e);}.is-current a{color:var(--ink,#0d1b2e);font-weight:800;}.ds-strip__stops a:focus-visible{outline:3px solid var(--edge,#ffd23f);outline-offset:3px;box-shadow:0 0 0 3px var(--ink,#0d1b2e);}"
+    },
+    {
+      "name": "Project Panel",
+      "kind": "card",
+      "refersTo": "sign-panel",
+      "description": "Enamel sign with a stop roundel, label-grid facts and a branch-line highlight list beside a backlit lightbox.",
+      "html": "<article class=\"ds-panel\"><div class=\"ds-panel__words\"><h3 class=\"ds-panel__name\"><span class=\"ds-roundel\">JT</span>JAKIM Touch</h3><dl class=\"ds-facts\"><div><dt>Client</dt><dd>JAKIM</dd></div><div><dt>Platforms</dt><dd>iOS, Android, Huawei</dd></div><div><dt>Status</dt><dd>In service</dd></div></dl><ul class=\"ds-branch\"><li>Home-screen widgets in Swift and Kotlin.</li><li>A runtime layer for Huawei Mobile Services.</li></ul></div><div class=\"ds-panel__lightbox\"></div></article>",
+      "css": ".ds-panel{display:grid;grid-template-columns:7fr 5fr;border-radius:6px;background:var(--panel,#fff);box-shadow:var(--shadow-sign,0 1px 2px rgb(13 27 46/.08),0 10px 28px -12px rgb(13 27 46/.22));overflow:hidden;color:var(--ink,#0d1b2e);font-family:Barlow,system-ui,sans-serif;}.ds-panel__words{padding:2rem 1.5rem;}.ds-panel__name{display:flex;align-items:center;gap:.75rem;margin:0;font-size:1.75rem;font-weight:800;line-height:1.05;}.ds-roundel{display:inline-grid;place-items:center;min-width:2.75rem;height:2.75rem;padding-inline:.5rem;border-radius:999px;background:var(--line,#1546d1);color:var(--on-line,#fff);font-family:'Barlow Condensed',Barlow,sans-serif;font-size:1.125rem;font-weight:700;}.ds-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(7rem,1fr));margin:1.5rem 0 0;border-top:2px solid var(--ink,#0d1b2e);}.ds-facts div{padding:.5rem 1rem .75rem 0;border-bottom:1px solid var(--rule,#d3dae3);}.ds-facts dt{color:var(--ink-2,#4a5970);font-family:'Barlow Condensed',Barlow,sans-serif;font-size:.9375rem;font-weight:600;}.ds-facts dd{margin:0;font-weight:700;line-height:1.3;}.ds-branch{position:relative;display:grid;gap:.75rem;margin:1.5rem 0 0;padding:0 0 0 2rem;list-style:none;}.ds-branch::before{content:'';position:absolute;top:.5rem;bottom:.5rem;left:.4375rem;width:2px;background:var(--line-ahead,#c4d0e6);}.ds-branch li{position:relative;}.ds-branch li::before{content:'';position:absolute;top:.5em;left:-1.875rem;width:.625rem;height:.625rem;border-radius:50%;background:var(--panel,#fff);box-shadow:0 0 0 2px var(--ink,#0d1b2e);}.ds-panel__lightbox{min-height:14rem;background:var(--lightbox,#dbe5ff);}"
+    },
+    {
+      "name": "Experience Stop",
+      "kind": "custom",
+      "refersTo": "here-tag",
+      "description": "Timetable stop on the cobalt rail; the current stop is yellow with a navy 'You are here' tag.",
+      "html": "<div class=\"ds-line\"><div class=\"ds-stop ds-stop--here\"><span class=\"ds-stop__dot\"></span><p class=\"ds-stop__when\">Apr 2025 - now</p><h3 class=\"ds-stop__place\">Zen Computer Systems <span class=\"ds-here\">You are here</span></h3></div></div>",
+      "css": ".ds-line{position:relative;padding:.5rem 0 1rem;font-family:Barlow,system-ui,sans-serif;color:var(--ink,#0d1b2e);}.ds-line::before{content:'';position:absolute;top:.75rem;bottom:0;left:.5625rem;width:.375rem;border-radius:999px;background:var(--line,#1546d1);}.ds-stop{position:relative;padding-left:3rem;}.ds-stop__dot{position:absolute;top:.25rem;left:.0625rem;width:1.375rem;height:1.375rem;border-radius:50%;background:var(--panel,#fff);box-shadow:inset 0 0 0 .25rem var(--ink,#0d1b2e);}.ds-stop--here .ds-stop__dot{background:var(--edge,#ffd23f);box-shadow:inset 0 0 0 .25rem var(--ink,#0d1b2e),0 0 0 .375rem var(--panel,#fff);}.ds-stop__when{margin:0;color:var(--ink-2,#4a5970);font-family:'Barlow Condensed',Barlow,sans-serif;font-size:1.0625rem;font-weight:600;}.ds-stop__place{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .75rem;margin:.25rem 0 0;font-size:1.75rem;font-weight:800;line-height:1.05;}.ds-here{padding:.3rem .6rem .25rem;border-radius:4px;background:var(--sign-dark,#0d1b2e);color:var(--edge,#ffd23f);font-family:'Barlow Condensed',Barlow,sans-serif;font-size:1rem;font-weight:700;}"
+    },
+    {
+      "name": "Skill Legend Line",
+      "kind": "chip",
+      "refersTo": null,
+      "description": "Skills as a transit-map legend row: line swatch with end stops, then dot-separated stops.",
+      "html": "<div class=\"ds-legend\"><p class=\"ds-legend__name\"><span class=\"ds-swatch\"></span>State</p><ul class=\"ds-legend__stops\"><li>GetX</li><li>Riverpod</li><li>BLoC</li><li>Provider</li></ul></div>",
+      "css": ".ds-legend{display:grid;grid-template-columns:17rem 1fr;align-items:baseline;gap:.5rem 2rem;padding-block:1.5rem;border-top:2px solid var(--ink,#0d1b2e);border-bottom:1px solid var(--rule,#d3dae3);color:var(--ink,#0d1b2e);font-family:Barlow,system-ui,sans-serif;font-size:1.25rem;}.ds-legend__name{display:flex;align-items:center;gap:.75rem;margin:0;font-weight:800;}.ds-swatch{position:relative;width:2.25rem;height:.375rem;border-radius:999px;background:var(--line,#1546d1);}.ds-swatch::before,.ds-swatch::after{content:'';position:absolute;top:50%;width:.75rem;height:.75rem;border-radius:50%;background:var(--panel,#fff);box-shadow:0 0 0 2px var(--ink,#0d1b2e);transform:translateY(-50%);}.ds-swatch::before{left:-.125rem;}.ds-swatch::after{right:-.125rem;}.ds-legend__stops{display:flex;flex-wrap:wrap;gap:.25rem .75rem;margin:0;padding:0;list-style:none;}.ds-legend__stops li:not(:last-child)::after{content:'';display:inline-block;width:.35rem;height:.35rem;margin-left:.75rem;border-radius:50%;background:var(--ink-2,#4a5970);vertical-align:middle;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Line Map",
+    "overview": "**Creative North Star: \"The Line Map\"**\n\nThe page is a Klang Valley rail line. A career is one cobalt line, each shipped app is a station in service, and the visitor reads the page the way they read a platform: enamel sign panels standing on a pale tiled floor, condensed station codes in tags and roundels, strip maps with stops, drawn arrow pictograms, and backlit aluminium lightboxes that hold photos and phone screens. Nothing is ornament borrowed from elsewhere. Every device on the page, from the section headings to the bullet lists, is a piece of transit wayfinding doing a wayfinding job.\n\nDensity is calm and signage-sized: large bold Barlow lettering, generous station padding (6rem to 8rem between sections), information set in label grids and timetable columns rather than paragraphs. The palette is rationed. White signs carry navy lettering on the pale floor; cobalt appears only where the line itself appears; platform-edge yellow appears only where the visitor is.\n\nLight mode is the reference design. Dark mode follows the visitor's system setting and is the same platform at night: the signs turn navy with pale lettering, the floor drops to near-black blue, and every role keeps its job.",
+    "keyCharacteristics": [
+      "Enamel sign panels (white by day, navy by night) on a 4rem tiled platform floor.",
+      "One cobalt line blue, rationed to the line, current position, station codes and the Email sign.",
+      "Platform-edge yellow means \"you are here\" and keyboard focus, nothing else.",
+      "Barlow for all lettering; Barlow Condensed for codes, dates, labels and fact keys.",
+      "Rails, stops and branch lines replace bullets, chips and dividers.",
+      "A sticky route strip whose yellow marker travels the line as you scroll."
+    ],
+    "rules": [
+      {
+        "name": "The Rationed Blue Rule",
+        "body": "Cobalt is the line. It may fill the line, its stops, codes and roundels, the hero field, the concourse and the one primary action (Email). It never decorates a card, a border or a hover on an unrelated element.",
+        "section": "colors"
+      },
+      {
+        "name": "The Platform Edge Rule",
+        "body": "Yellow says \"you are here\": the strip marker, the current stop, the here tag, and focus. If an element is not the visitor's position or focus, it is not yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sign Case Rule",
+        "body": "Lettering is sentence case, as on the signs. No uppercase tracking, no small-caps labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Condensed Means Code Rule",
+        "body": "Barlow Condensed is for codes, dates, keys and short labels. Sentences and headings stay in Barlow.",
+        "section": "typography"
+      },
+      {
+        "name": "The Standing Sign Rule",
+        "body": "Shadows are soft, negative-spread and fall downward. No hard offset shadows, no glows, no hover lifts on panels.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do draw lists, sequences and timelines as lines with stops: rails 0.375rem thick, stops ringed 3px.",
+      "Do give every section a station code that matches its stop on the route strip.",
+      "Do set codes, dates and keys in Barlow Condensed and everything else in Barlow, in sentence case.",
+      "Do keep panels on the two shadow tokens, Sign and Lift.",
+      "Do use exponential ease-out (`cubic-bezier(0.16, 1, 0.3, 1)`) for every transition, 0.2s for color, 0.25s for the marker, 0.3s for arrow nudges, and drop entrance motion under reduced motion.",
+      "Do keep dark mode a re-lighting of the same roles: navy signs, pale lettering, same yellow.",
+      "Do draw new icons on the 24px grid with the 2px round stroke."
+    ],
+    "donts": [
+      "Don't use cobalt for anything that is not the line, a code, a roundel, the hero field, the concourse or the Email action.",
+      "Don't use yellow for anything but position and focus.",
+      "Don't build a skill-chip cloud or a grid of same-size project cards; skills are a legend, projects are stops on the line.",
+      "Don't stack an uppercase label or kicker above a heading; the station code sits inline in the heading.",
+      "Don't use emoji or Unicode glyphs as icons.",
+      "Don't add hard offset shadows, glows or gradients to signs."
+    ]
+  }
+}

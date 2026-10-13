@@ -1,0 +1,42 @@
+name: Deploy portfolio
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - '.impeccable/**'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # Pinned like Ikko's workflows, so the runner image only changes on purpose.
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          # Must satisfy "engines" in package.json (^22.18.0 || >=24.12.0).
+          node-version: 24
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # imran.ikko.space's document root is public_html/imran/, inside Ikko's folder. --delete only touches
+      # this folder. Ikko's deploy-vue.yml must keep excluding /imran/, or its own --delete wipes this site.
+      - name: Deploy dist/ to Hostinger via rsync over SSH
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avzr --delete
+          path: dist/
+          remote_path: /home/${{ secrets.HOSTINGER_USERNAME }}/domains/ikko.space/public_html/imran/
+          remote_host: ${{ secrets.HOSTINGER_HOST }}
+          remote_port: ${{ secrets.HOSTINGER_SSH_PORT }}
+          remote_user: ${{ secrets.HOSTINGER_USERNAME }}
+          remote_key: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}

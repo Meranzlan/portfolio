@@ -1,0 +1,9 @@
+node_modules
+dist
+*.local
+.DS_Store
+.impeccable/live
+.impeccable/review
+.impeccable/build
+.claude/settings.local.json
+.impeccable/questions

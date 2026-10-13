@@ -1,0 +1,152 @@
+/* base.css — element defaults, browser surfaces and the page frame */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sign);
+  -webkit-text-size-adjust: 100%;
+  /* Jump links land below the sticky route strip, not under it. */
+  scroll-padding-top: calc(var(--strip-h) + var(--space-5));
+  scrollbar-color: var(--ink-2) var(--ground);
+  caret-color: var(--line);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* The platform floor: faint tile joints under every pale section. Panels and the blue concourse cover it. */
+body {
+  margin: 0;
+  background-color: var(--ground);
+  background-image:
+    linear-gradient(var(--ground-tile) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ground-tile) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  background-position: center top;
+  font-size: var(--text-base);
+  line-height: 1.55;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+p,
+ul,
+ol,
+dl,
+dd,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.22em;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--line);
+  color: var(--on-line);
+}
+
+/* Focus is the platform edge: a yellow band with a navy rim, readable on white, tile and blue alike. */
+:focus-visible {
+  outline: 3px solid var(--edge);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px var(--ink);
+}
+
+.wrap {
+  width: min(100% - 2 * var(--gutter), 78rem);
+  margin-inline: auto;
+}
+
+.nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 50;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--ink);
+  color: var(--panel);
+  font-weight: 700;
+  border-radius: var(--radius-tile);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: none;
+}
+
+/* Section frame shared by every station on the page */
+.station {
+  padding-block: var(--space-9) var(--space-8);
+}
+
+@media (min-width: 64rem) {
+  .station {
+    padding-block: var(--space-10) var(--space-9);
+  }
+}
+
+.station__intro {
+  max-width: 40rem;
+  margin-top: var(--space-4);
+  color: var(--ink-2);
+  font-size: var(--text-lg);
+  line-height: 1.45;
+}

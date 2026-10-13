@@ -1,0 +1,10 @@
+# imran.ikko.space is served from public_html/imran/, a folder inside Ikko's site.
+# Ikko's .htaccess one level up sends unknown paths to Ikko's index.html. Turning the rewrite engine on here
+# replaces those rules for this folder (mod_rewrite does not inherit a parent's rules unless asked to).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Reached as ikko.space/imran/...: send the visitor to the subdomain instead.
+  RewriteCond %{HTTP_HOST} !^imran\.ikko\.space$ [NC]
+  RewriteRule ^(.*)$ https://imran.ikko.space/$1 [R=301,L]
+</IfModule>
