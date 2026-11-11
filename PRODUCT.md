@@ -53,7 +53,8 @@ stack (Ikko: Vue + Laravel web and a Flutter Android client on his own domain).
 
 ## Brand Commitments
 
-- Blue is the highlight colour (owner's choice).
+- FitXP's dark look (owner, 2026-11-11): the site is a showcase of the same design language as his app. Pale blue
+  is the one highlight colour; the app's place colours tint the sections. Dark only.
 - The owner's brief: safe and clear first, but not generic; playful and interesting; attention-catching without
   overshadowing the content.
 

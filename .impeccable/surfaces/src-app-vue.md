@@ -12,8 +12,8 @@ second) decides whether Imran is worth contacting and does it: primary action Em
 WhatsApp, LinkedIn, GitHub. Proof: shipped apps (JAKIM Touch, i-Kredikom 2.0, Ikko, FitXP, Recipease) with
 screens, concrete technical details from the resume, photos the owner adds later. Content lives in one data file.
 
-Memorable moment: the route strip at the foot of the first viewport becomes the sticky nav; its marker travels
-the blue line as you scroll and lights the station you are at.
+Memorable moment: the corner dial, as in FitXP. A pebble in the bottom-right corner whose wavy ring fills as you
+scroll; press it and a pool spills from the corner with one coloured place per section, the current one lit.
 
 Unresolved: portrait (cut-out PNG or plain photo), app screenshots, launch and achievement photos, any
 achievements beyond the Dean's List. All slots ship as labelled placeholders until the owner supplies them.

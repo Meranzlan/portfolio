@@ -1,64 +1,62 @@
 /*
- * tokens.css — the Line Map palette, type and spacing
- * ====================================================
- * Klang Valley rail wayfinding: white enamel signs on a pale platform-tile floor, navy lettering, one cobalt
- * line blue, and platform-edge yellow that only ever means "you are here" (and keyboard focus).
- * Light is the main design; dark follows the visitor's system setting with the same roles.
+ * tokens.css — FitXP's dark theme, as the portfolio's palette, type and spacing
+ * ==============================================================================
+ * The colours are FitXP's own dark-mode roles (lib/shared/design/tokens.dart in the app): a night-navy page with
+ * faint contour lines, slightly lighter navy surfaces, warm off-white ink, and one pale blue for the one call to
+ * action. Each section borrows the colour of one of the app's places, the way the corner dial colours them.
+ * The site is dark only, like the app's dark theme it is modelled on.
  */
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 
   /* Surfaces */
-  --ground: #eef2f6; /* platform floor */
-  --ground-tile: #e2e8ef; /* tile joints on the floor */
-  --panel: #ffffff; /* enamel sign */
-  --rule: #d3dae3;
+  --bg: #18203a; /* page */
+  --surface: #212b4a; /* cards, pills, sheets */
+  --board: #1c2542; /* the tray screenshots sit on */
+  --board-dot: #2e3a5e;
+  --raised: #2a365d; /* a surface on a surface */
+  --line: #34416a; /* outlines and dividers */
+  --contour: #2a355a;
+  --track: #2e3a5e; /* the unfilled part of a ring or trail */
 
   /* Ink */
-  --ink: #0d1b2e;
-  --ink-2: #4a5970;
+  --ink: #f2f0ea;
+  --muted: #a6b3c8;
 
-  /* The line. Blue is rationed: the line itself, where you are, and the Email sign. */
-  --line: #1546d1;
-  --line-strong: #0f37a8;
-  --line-text: #1546d1;
-  --line-pale: #dbe5ff; /* text on the blue field, and the stretch of line still ahead */
-  --line-ahead: #c4d0e6;
-  --on-line: #ffffff;
+  /* The one call to action, selection and progress */
+  --accent: #a9c6e0;
+  --accent-deep: #c4d8eb;
+  --on-accent: #18203a;
 
-  /* Platform-edge yellow: "you are here" and focus, nothing else */
-  --edge: #ffd23f;
+  /* The places, borrowed from the app's corner dial */
+  --water: #7dd3d3;
+  --move: #e99a7c;
+  --star: #f0c25e;
+  --food: #f28b82;
+  --looks: #c2a8ec;
+  --you: #f0a6c8;
+  --weight: #d8c49a;
 
-  /* Hardware */
-  --device: #0d1b2e;
-  --device-rim: #0d1b2e;
-  --alu: #d6dce4; /* lightbox frames */
-  --screen: #e6ecf5;
-  --device-chrome: #1c2a40; /* browser frame bar */
-  --device-light: #34445c;
-  --device-text: #b9c6d8;
-  --lightbox: #dbe5ff; /* the backlit panel screens stand in */
-  --sign-dark: #0d1b2e; /* navy direction signs on the blue concourse */
-  --sign-dark-hover: #182a45;
+  /* Hardware: the phone and browser frames screenshots sit in */
+  --device: #0e1426;
+  --device-bar: #212b4a;
 
-  --shadow-sign: 0 1px 2px rgb(13 27 46 / 0.08), 0 10px 28px -12px rgb(13 27 46 / 0.22);
-  --shadow-lift: 0 2px 4px rgb(13 27 46 / 0.12), 0 22px 40px -18px rgb(13 27 46 / 0.45);
+  --shadow: 0 2px 6px rgb(0 0 0 / 0.25), 0 18px 40px -20px rgb(0 0 0 / 0.7);
 
-  --radius-sign: 6px;
-  --radius-tile: 4px;
+  /* Type: the app's three families, each with one job. All SIL OFL, bundled in src/assets/fonts. */
+  --font-sans: 'Zen Maru Gothic', system-ui, sans-serif; /* everything you read */
+  --font-serif: 'Zen Old Mincho', Georgia, serif; /* titles */
+  --font-numeral: 'Instrument Serif', Georgia, serif; /* big numbers */
 
-  /* Type: Barlow comes from road and transit signage; the condensed cut sets station codes. */
-  --font-sign: 'Barlow', system-ui, sans-serif;
-  --font-code: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
-
+  --text-xs: 0.8125rem;
   --text-sm: 0.9375rem;
   --text-base: 1.0625rem;
-  --text-lg: 1.25rem;
-  --text-xl: 1.5rem;
+  --text-lg: 1.1875rem;
+  --text-xl: 1.4375rem;
   --text-2xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
-  --text-3xl: clamp(2.25rem, 1.6rem + 2.4vw, 3.25rem);
-  --text-display: clamp(3.25rem, 1.5rem + 6vw, 6rem);
+  --text-3xl: clamp(2.125rem, 1.5rem + 2.4vw, 3.125rem);
+  --text-display: clamp(3rem, 1.4rem + 6vw, 5.75rem);
 
   /* One spacing rhythm for the whole page */
   --space-1: 0.25rem;
@@ -72,40 +70,20 @@
   --space-9: 6rem;
   --space-10: 8rem;
 
+  /* Corners, for the few things that aren't drawn by SoftShape */
+  --radius-card: 1.75rem;
+  --radius-tile: 1rem;
+
   --gutter: 1rem;
-  --strip-h: 3.75rem;
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* The app's motion curves (FitMotion): a gentle settle, and a fast start with a long glide. */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --glide: cubic-bezier(0.2, 0.9, 0.25, 1);
+  --spring: cubic-bezier(0.2, 1.5, 0.4, 1);
 }
 
 @media (min-width: 48rem) {
   :root {
     --gutter: 2rem;
-    --strip-h: 4.75rem;
-  }
-}
-
-/* Night platform: same roles, re-lit. Light stays the reference design. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --ground: #0b1220;
-    --ground-tile: #111a2a;
-    --panel: #121c2e;
-    --rule: #26344c;
-    --ink: #e8edf5;
-    --ink-2: #9fb0c6;
-    --line: #2453e0;
-    --line-strong: #3a68f0;
-    --line-text: #7ea2ff;
-    --line-ahead: #2a3953;
-    --device: #060b14;
-    --device-rim: #2c3a52;
-    --alu: #2a3850;
-    --screen: #1a2639;
-    --lightbox: #16244a;
-    --sign-dark: #0b1324;
-    --sign-dark-hover: #16223a;
-    --shadow-sign: 0 1px 2px rgb(0 0 0 / 0.4), 0 12px 30px -14px rgb(0 0 0 / 0.7);
-    --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.4), 0 24px 44px -18px rgb(0 0 0 / 0.8);
   }
 }

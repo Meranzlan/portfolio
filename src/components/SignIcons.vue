@@ -1,11 +1,17 @@
 <!--
   SignIcons.vue — the drawn pictogram set, inlined once
   =====================================================
-  Every icon is a <symbol> on one 24 x 24 grid with the same 2px round stroke, so they read as one sign family.
+  Every icon is a <symbol> on one 24 x 24 grid with the same 2px round stroke, so they read as one family.
   SignIcon.vue draws a copy of a symbol with <use href="#i-name">.
 -->
 <template>
   <svg aria-hidden="true" width="0" height="0" style="position: absolute">
+    <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11.5 12 5l8 6.5M6.5 10v9.5h11V10" /><path d="M10 19.5v-5h4v5" /></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24">
+      <rect x="3.5" y="7.5" width="17" height="12" rx="2.5" /><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3.5 13h17" />
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.8 2.5 5.1 5.6.8-4 4 .9 5.6-5-2.7-5 2.7.9-5.6-4-4 5.6-.8Z" /></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" /></symbol>
     <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6" /></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12M6.5 10.5 12 16l5.5-5.5M5 20h14" /></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24">

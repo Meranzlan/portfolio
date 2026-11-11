@@ -1,198 +1,205 @@
 <!--
-  ProjectPanel.vue — one shipped app, set out like a platform information panel
-  ==============================================================================
-  Words on the left (name, summary, the label grid, the highlights drawn as a branch line with stops);
-  the app's screens on a pale blue lightbox on the right. `flip` swaps the sides for rhythm down the page.
+  ProjectPanel.vue — one app, on a soft card like the app's own
+  ==============================================================
+  Words (a pebble badge, the name, a summary, facts as small tracker tiles, highlights, the stack as chips) and the
+  app's screens standing on a dotted tray, the way Today's plates stand on the app's board.
+  Layouts: two screens or fewer sit beside the words (`flip` swaps the sides); more screens get a tray across the
+  whole card that scrolls sideways on a phone.
 -->
 <script setup lang="ts">
 import type { Project } from '../content'
 import DeviceFrame from './DeviceFrame.vue'
 import SignIcon from './SignIcon.vue'
+import SoftShape from './SoftShape.vue'
 
-const props = defineProps<{ project: Project; flip?: boolean }>()
+const props = withDefaults(defineProps<{ project: Project; flip?: boolean; seed?: number }>(), { flip: false, seed: 0 })
 
 // The browser frame's address bar shows the link without its scheme, e.g. "ikko.space".
 const address = props.project.link?.href.replace(/^https?:\/\//, '')
+const gallery = props.project.screens.length > 2
+const compact = props.project.size === 'compact' && props.project.screens.length <= 1
 </script>
 
 <template>
-  <article
+  <SoftShape
+    tag="article"
     class="panel"
-    :class="[`panel--${project.size}`, { 'panel--flip': flip, 'panel--wide': project.size === 'compact' && project.screens.length > 1 }]"
+    :radius="28"
+    :seed="seed"
+    :class="{ 'panel--flip': flip && !gallery, 'panel--gallery': gallery, 'panel--compact': compact, 'panel--side': !gallery && !compact }"
+    :style="{ '--tint': `var(--${project.tint})` }"
     :aria-labelledby="`${project.id}-name`"
   >
     <div class="panel__words">
-      <h3 :id="`${project.id}-name`" class="panel__name">
-        <span class="panel__bullet" aria-hidden="true">{{ project.code }}</span>
-        <span>{{ project.name }}</span>
-      </h3>
+      <div class="panel__head">
+        <SoftShape class="panel__badge" shape="pebble" :seed="seed + 30" aria-hidden="true">{{ project.code }}</SoftShape>
+        <h3 :id="`${project.id}-name`" class="panel__name">{{ project.name }}</h3>
+      </div>
       <p class="panel__summary">{{ project.summary }}</p>
 
       <dl class="panel__facts">
-        <div v-for="fact in project.facts" :key="fact.label" class="panel__fact">
+        <SoftShape v-for="(fact, index) in project.facts" :key="fact.label" class="panel__fact" :radius="18" :seed="seed + index">
           <dt>{{ fact.label }}</dt>
           <dd>{{ fact.value }}</dd>
-        </div>
+        </SoftShape>
       </dl>
 
-      <ul class="panel__branch">
-        <li v-for="line in project.highlights" :key="line">{{ line }}</li>
+      <ul class="panel__highlights">
+        <li v-for="line in project.highlights" :key="line">
+          <SignIcon name="star" :size="15" class="panel__star" />
+          <span>{{ line }}</span>
+        </li>
       </ul>
 
-      <p class="panel__stack">
-        <span class="visually-hidden">Built with: </span>
-        <span v-for="tool in project.stack" :key="tool" class="panel__tool">{{ tool }}</span>
-      </p>
+      <ul class="panel__stack">
+        <li class="visually-hidden">Built with:</li>
+        <SoftShape v-for="(tool, index) in project.stack" :key="tool" tag="li" class="panel__tool" :seed="seed + index * 2">
+          {{ tool }}
+        </SoftShape>
+      </ul>
 
       <a v-if="project.link" class="panel__link" :href="project.link.href" target="_blank" rel="noopener">
         {{ project.link.label }}<SignIcon name="external" :size="18" />
       </a>
     </div>
 
-    <div class="panel__lightbox">
-      <DeviceFrame
-        v-for="shot in project.screens"
-        :key="shot.alt"
-        class="panel__device"
-        :class="`panel__device--${shot.device}`"
-        :screen="shot"
-        :app="project.name"
-        :url="address"
+    <div class="panel__tray">
+      <div class="panel__screens">
+        <DeviceFrame
+          v-for="shot in project.screens"
+          :key="shot.alt"
+          class="panel__device"
+          :class="`panel__device--${shot.device}`"
+          :screen="shot"
+          :app="project.name"
+          :url="address"
+        />
+      </div>
+      <img
+        v-if="project.banner"
+        class="panel__banner"
+        :src="project.banner.src"
+        :alt="project.banner.alt"
+        width="800"
+        height="480"
+        loading="lazy"
+        decoding="async"
       />
     </div>
-  </article>
+  </SoftShape>
 </template>
 
 <style scoped>
 .panel {
+  --soft-fill: var(--surface);
+  --soft-stroke: var(--line);
   display: grid;
-  border-radius: var(--radius-sign);
-  background: var(--panel);
-  box-shadow: var(--shadow-sign);
-  overflow: hidden;
+  padding: var(--space-3);
 }
 
 .panel__words {
-  padding: var(--space-6) var(--space-5);
+  padding: var(--space-5) var(--space-4) var(--space-6);
+}
+
+.panel__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* The project's pebble, in its own colour, like a place on the app's dial */
+.panel__badge {
+  --soft-fill: var(--tint);
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--on-accent);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .panel__name {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
   font-size: var(--text-2xl);
 }
 
-/* The app's stop roundel on the Shipped apps line */
-.panel__bullet {
-  display: inline-grid;
-  flex: none;
-  place-items: center;
-  min-width: 2.75rem;
-  height: 2.75rem;
-  padding-inline: 0.5rem;
-  border-radius: 999px;
-  background: var(--line);
-  color: var(--on-line);
-  font-family: var(--font-code);
-  font-size: 1.125rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-
-.panel--feature .panel__name {
+.panel--gallery .panel__name,
+.panel--side .panel__name {
   font-size: var(--text-3xl);
 }
 
 .panel__summary {
-  max-width: 38rem;
-  margin-top: var(--space-3);
-  color: var(--ink-2);
+  max-width: 40rem;
+  margin-top: var(--space-4);
+  color: var(--muted);
   font-size: var(--text-lg);
-  line-height: 1.45;
+  line-height: 1.55;
 }
 
-/* The label grid: every project answers the same questions in the same places. */
+/* Facts as small tiles, like the water, weight and steps trackers on Today */
 .panel__facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+  gap: var(--space-2);
   margin-top: var(--space-5);
-  border-top: 2px solid var(--ink);
 }
 
 .panel__fact {
-  padding: var(--space-2) var(--space-4) var(--space-3) 0;
-  border-bottom: 1px solid var(--rule);
+  --soft-fill: var(--raised);
+  padding: var(--space-3) var(--space-4);
 }
 
 .panel__fact dt {
-  color: var(--ink-2);
-  font-family: var(--font-code);
-  font-size: 0.9375rem;
-  font-weight: 600;
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .panel__fact dd {
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
-/* Highlights as a branch line: a thin rail with a stop at each point. */
-.panel__branch {
-  position: relative;
+.panel__highlights {
   display: grid;
   gap: var(--space-3);
   margin-top: var(--space-5);
-  padding-left: var(--space-6);
 }
 
-.panel__branch::before {
-  content: '';
-  position: absolute;
-  top: 0.5rem;
-  bottom: 0.5rem;
-  left: 0.4375rem;
-  width: 2px;
-  background: var(--line-ahead);
+.panel__highlights li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  max-width: 42rem;
 }
 
-.panel__branch li {
-  position: relative;
-  max-width: 40rem;
+.panel__star {
+  margin-top: 0.3rem;
+  color: var(--tint);
+  fill: currentColor;
 }
 
-.panel__branch li::before {
-  content: '';
-  position: absolute;
-  top: 0.5em;
-  left: calc(-1 * var(--space-6) + 0.125rem);
-  width: 0.625rem;
-  height: 0.625rem;
-  border-radius: 50%;
-  background: var(--panel);
-  box-shadow: 0 0 0 2px var(--ink);
-}
-
+/* The stack as chips, like the app's category pills */
 .panel__stack {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1) var(--space-3);
+  align-items: center;
+  align-content: start;
+  gap: var(--space-2);
   margin-top: var(--space-5);
-  color: var(--ink-2);
-  font-family: var(--font-code);
-  font-size: 1rem;
-  font-weight: 600;
 }
 
-.panel__tool:not(:last-child)::after {
-  content: '';
-  display: inline-block;
-  width: 0.3rem;
-  height: 0.3rem;
-  margin-left: var(--space-3);
-  border-radius: 50%;
-  background: currentColor;
-  vertical-align: middle;
+.panel__tool {
+  --soft-fill: transparent;
+  --soft-stroke: var(--line);
+  padding: var(--space-1) var(--space-4);
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
 }
 
 .panel__link {
@@ -201,84 +208,156 @@ const address = props.project.link?.href.replace(/^https?:\/\//, '')
   gap: var(--space-2);
   min-height: 2.75rem;
   margin-top: var(--space-4);
-  color: var(--line-text);
+  color: var(--accent);
   font-weight: 700;
 }
 
-/* The lightbox: a backlit pale-blue panel the screens stand in. */
-.panel__lightbox {
+/* ---------- The tray the screens stand on: the app's board, a navy tray with a dot grid ---------- */
+.panel__tray {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-4);
+  border-radius: calc(var(--radius-card) - var(--space-2));
+  background:
+    radial-gradient(circle, var(--board-dot) 1.5px, transparent 1.6px) 0 0 / 1.25rem 1.25rem,
+    var(--board);
+}
+
+.panel__screens {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--space-5);
-  padding: var(--space-6) var(--space-5);
-  background: var(--lightbox);
 }
 
 .panel__device--phone {
-  width: clamp(8.5rem, 6rem + 10vw, 12.5rem);
+  flex: none;
+  width: clamp(8.5rem, 6rem + 10vw, 12rem);
 }
 
 .panel__device--browser {
-  width: min(100%, 26rem);
+  width: min(100%, 28rem);
 }
 
-.panel--feature .panel__device--phone:nth-child(2) {
+/* A web app's phone is the smaller, second screen beside its browser window. */
+.panel__screens:has(.panel__device--browser) .panel__device--phone {
+  width: 6.5rem;
+}
+
+.panel__device--browser {
+  flex: 1;
+}
+
+.panel--side .panel__device--phone:nth-child(2) {
   margin-top: var(--space-8);
 }
 
+.panel__banner {
+  justify-self: center;
+  width: min(100%, 44rem);
+  height: auto;
+  border-radius: var(--radius-tile);
+}
+
+/* A gallery tray scrolls sideways on narrow screens, snapping phone by phone, like Today's pages. */
+.panel--gallery .panel__screens {
+  justify-content: flex-start;
+  margin-inline: calc(-1 * var(--space-4));
+  padding: var(--space-2) var(--space-4) var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.panel--gallery .panel__device--phone {
+  width: clamp(9.5rem, 7rem + 9vw, 13rem);
+  scroll-snap-align: center;
+}
+
+.panel--gallery .panel__device--phone:nth-child(even) {
+  margin-top: var(--space-7);
+}
+
+@media (min-width: 64rem) {
+  .panel--gallery .panel__screens {
+    justify-content: center;
+    overflow: visible;
+  }
+
+  .panel--gallery .panel__words {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: var(--space-7);
+  }
+
+  .panel--gallery .panel__head,
+  .panel--gallery .panel__summary,
+  .panel--gallery .panel__facts {
+    grid-column: 1;
+  }
+
+  .panel--gallery .panel__highlights {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    align-self: start;
+    margin-top: 0;
+  }
+
+  .panel--gallery .panel__stack {
+    grid-column: 1;
+  }
+}
+
 @media (min-width: 56rem) {
-  .panel {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  }
-
-  .panel--flip {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-  }
-
-  .panel--flip .panel__lightbox {
-    order: -1;
-  }
-
   .panel__words {
-    padding: var(--space-7);
-  }
-
-  .panel--compact:not(.panel--wide) {
-    grid-template-columns: 1fr;
-  }
-
-  .panel--compact:not(.panel--wide) .panel__words {
     padding: var(--space-6);
   }
 
-  .panel--compact:not(.panel--wide) .panel__lightbox {
+  .panel--side {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-3);
+  }
+
+  .panel--side.panel--flip {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+
+  .panel--flip .panel__tray {
     order: -1;
-    padding-block: var(--space-6) 0;
-    align-items: flex-end;
-    overflow: hidden;
   }
 
-  /* Compact phones are cropped by the lightbox floor, like a phone standing in a display case. */
-  .panel--compact:not(.panel--wide) .panel__device--phone {
-    width: 11rem;
-    margin-bottom: -6rem;
+  .panel--side .panel__tray {
+    align-content: center;
   }
 
-  .panel--wide .panel__lightbox {
+  /* Ikko: the browser fills the tray and its phone leans on the corner. */
+  .panel--side .panel__screens:has(.panel__device--browser) {
     position: relative;
+    padding-right: var(--space-7);
   }
 
-  .panel--wide .panel__device--phone {
+  .panel--side .panel__screens:has(.panel__device--browser) .panel__device--phone {
     position: absolute;
-    right: var(--space-5);
-    bottom: var(--space-5);
-    width: 7.5rem;
+    right: 0;
+    bottom: calc(-1 * var(--space-4));
+    width: 7rem;
+    margin: 0;
   }
 
-  .panel--wide .panel__device--browser {
+  .panel--side .panel__device--browser {
     width: 100%;
-    margin-right: var(--space-8);
   }
+}
+
+/* Compact cards: the single phone rises out of the tray at the top, cropped by its floor. */
+.panel--compact .panel__tray {
+  order: -1;
+  padding-bottom: 0;
+  overflow: hidden;
+  max-height: 16rem;
+}
+
+.panel--compact .panel__device--phone {
+  width: 10.5rem;
 }
 </style>
