@@ -80,8 +80,6 @@ const compact = props.project.size === 'compact' && props.project.screens.length
         class="panel__banner"
         :src="project.banner.src"
         :alt="project.banner.alt"
-        width="800"
-        height="480"
         loading="lazy"
         decoding="async"
       />

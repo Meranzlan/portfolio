@@ -153,9 +153,15 @@ export const projects: Project[] = [
     ],
     stack: ['Flutter', 'Dart', 'Riverpod', 'OIDC + PKCE', 'OpenStreetMap', 'FCM'],
     screens: [
-      { src: '', alt: 'i-Kredikom lender map', device: 'phone' },
-      { src: '', alt: 'i-Kredikom loan calculator', device: 'phone' },
+      { src: '/images/i-kredikom/home.webp', alt: 'i-Kredikom 2.0 home: announcements and services', device: 'phone' },
+      { src: '/images/i-kredikom/map.webp', alt: 'i-Kredikom 2.0 map of licensed lenders, with a lender’s details open', device: 'phone' },
+      { src: '/images/i-kredikom/calculator.webp', alt: 'i-Kredikom 2.0 loan calculator showing total interest and monthly instalment', device: 'phone' },
+      { src: '/images/i-kredikom/licence.webp', alt: 'i-Kredikom 2.0 licence check result for a moneylender', device: 'phone' },
     ],
+    banner: {
+      src: '/images/i-kredikom/banner.webp',
+      alt: 'i-Kredikom 2.0 store banner: “Semak lesen sebelum meminjam”, check the licence before you borrow',
+    },
     size: 'feature',
   },
   {
