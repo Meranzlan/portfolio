@@ -1,12 +1,12 @@
 <!--
-  PhotoBoard.vue — photos in station lightboxes, beside the achievements plaque
-  ==============================================================================
-  Add photos in content.ts. `shape` decides the lightbox: landscape spans two columns, portrait two rows.
-  Until a photo has a `src`, its lightbox shows the caption and "Photo to come".
+  PhotoBoard.vue — highlights: launch photos, and achievements as trophy cards
+  =============================================================================
+  Photos sit in soft frames. Achievements are drawn like the app's trophies: a gold pebble with the award mark.
 -->
 <script setup lang="ts">
 import { achievements, photos, stations } from '../content'
 import SignIcon from './SignIcon.vue'
+import SoftShape from './SoftShape.vue'
 import StationHeading from './StationHeading.vue'
 
 const station = stations.find((item) => item.id === 'highlights')
@@ -16,33 +16,45 @@ const shown = photos.filter((photo) => photo.src || import.meta.env.DEV)
 </script>
 
 <template>
-  <section id="highlights" class="station" aria-labelledby="highlights-title">
+  <section id="highlights" class="section" aria-labelledby="highlights-title">
     <div class="wrap">
       <StationHeading
         heading-id="highlights-title"
-        :code="station?.code ?? ''"
+        :station="station"
         title="Highlights"
         :intro="shown.length ? 'Launch days, awards and the people behind the apps.' : undefined"
       />
 
       <div class="board" :class="{ 'board--plain': !shown.length }">
-        <figure v-for="photo in shown" :key="photo.caption" class="lightbox" :class="`lightbox--${photo.shape}`">
-          <div class="lightbox__frame">
+        <SoftShape
+          v-for="(photo, index) in shown"
+          :key="photo.caption"
+          tag="figure"
+          class="photo"
+          :radius="24"
+          :seed="index + 80"
+          :class="`photo--${photo.shape}`"
+        >
+          <div class="photo__frame">
             <img v-if="photo.src" :src="photo.src" :alt="photo.alt" loading="lazy" decoding="async" />
-            <div v-else class="lightbox__empty">
+            <div v-else class="photo__empty">
               <SignIcon name="camera" :size="28" />
               <span>Photo to come</span>
             </div>
           </div>
-          <figcaption class="lightbox__caption">{{ photo.caption }}</figcaption>
-        </figure>
+          <figcaption class="photo__caption">{{ photo.caption }}</figcaption>
+        </SoftShape>
 
-        <ul class="plaque">
-          <li v-for="item in achievements" :key="item.title" class="plaque__item">
-            <SignIcon name="award" :size="32" class="plaque__icon" />
-            <h3 class="plaque__name">{{ item.title }}</h3>
-            <p class="plaque__from">{{ item.from }}</p>
-          </li>
+        <ul class="trophies">
+          <SoftShape v-for="(item, index) in achievements" :key="item.title" tag="li" class="trophy" :radius="24" :seed="index + 90">
+            <SoftShape class="trophy__medal" shape="pebble" :seed="index + 3" :wobble="0.12" aria-hidden="true">
+              <SignIcon name="award" :size="30" />
+            </SoftShape>
+            <div>
+              <h3 class="trophy__name">{{ item.title }}</h3>
+              <p class="trophy__from">{{ item.from }}</p>
+            </div>
+          </SoftShape>
         </ul>
       </div>
     </div>
@@ -55,33 +67,23 @@ const shown = photos.filter((photo) => photo.src || import.meta.env.DEV)
   gap: var(--space-5);
 }
 
-/* Wide screens: fixed-height rows, so every lightbox lines up whatever photo it holds. */
+/* Wide screens: fixed-height rows, so every frame lines up whatever photo it holds. */
 @media (min-width: 48rem) {
   .board {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: 15rem;
+    grid-auto-rows: 16rem;
     grid-auto-flow: dense;
   }
 
-  .lightbox--landscape .lightbox__frame > *,
-  .lightbox--portrait .lightbox__frame > *,
-  .lightbox--square .lightbox__frame > * {
-    aspect-ratio: auto;
-  }
-
-  .lightbox__frame {
-    min-height: 0;
-  }
-
-  .lightbox--landscape {
+  .photo--landscape {
     grid-column: span 2;
   }
 
-  .lightbox--portrait {
+  .photo--portrait {
     grid-row: span 2;
   }
 
-  .plaque {
+  .trophies {
     grid-column: 1 / -1;
   }
 
@@ -91,89 +93,74 @@ const shown = photos.filter((photo) => photo.src || import.meta.env.DEV)
   }
 }
 
-.lightbox {
+.photo {
+  --soft-fill: var(--surface);
+  --soft-stroke: var(--line);
   display: flex;
   flex-direction: column;
+  padding: var(--space-3);
 }
 
-/* The aluminium frame of a backlit platform lightbox */
-.lightbox__frame {
+.photo__frame {
   flex: 1;
-  padding: 0.625rem;
+  min-height: 12rem;
+  overflow: hidden;
   border-radius: var(--radius-tile);
-  background: var(--alu);
-  box-shadow: var(--shadow-sign);
+  background: var(--board);
 }
 
-.lightbox__frame > * {
+.photo__frame img {
   width: 100%;
   height: 100%;
-  border-radius: 2px;
-}
-
-.lightbox--landscape .lightbox__frame > * {
-  aspect-ratio: 16 / 10;
-}
-
-.lightbox--portrait .lightbox__frame > * {
-  aspect-ratio: 4 / 5;
-}
-
-.lightbox--square .lightbox__frame > * {
-  aspect-ratio: 1;
-}
-
-.lightbox__frame img {
   object-fit: cover;
 }
 
-.lightbox__empty {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.photo__empty {
+  display: grid;
+  place-content: center;
+  justify-items: center;
   gap: var(--space-2);
-  background: var(--screen);
-  color: var(--ink-2);
-  font-family: var(--font-code);
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.lightbox__caption {
-  margin-top: var(--space-3);
+  height: 100%;
+  color: var(--muted);
+  font-size: var(--text-sm);
   font-weight: 700;
 }
 
-.plaque {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: var(--space-5);
-  align-self: start;
-  padding: var(--space-5) var(--space-6);
-  border-radius: var(--radius-sign);
-  background: var(--panel);
-  box-shadow: var(--shadow-sign);
+.photo__caption {
+  padding: var(--space-3) var(--space-2) var(--space-1);
+  font-weight: 700;
 }
 
-.plaque__item {
+.trophies {
   display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: var(--space-4);
+}
+
+.trophy {
+  --soft-fill: var(--surface);
+  --soft-stroke: var(--line);
+  display: flex;
   align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
 }
 
-.plaque__icon {
-  grid-row: span 2;
-  color: var(--line-text);
+.trophy__medal {
+  --soft-fill: var(--star);
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  color: var(--on-accent);
 }
 
-.plaque__name {
-  font-size: var(--text-2xl);
-}
-
-.plaque__from {
-  color: var(--ink-2);
+.trophy__name {
   font-size: var(--text-lg);
+}
+
+.trophy__from {
+  color: var(--muted);
 }
 </style>

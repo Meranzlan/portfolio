@@ -1,4 +1,39 @@
-/* base.css — element defaults, browser surfaces and the page frame */
+/* base.css — fonts, element defaults, browser surfaces and the page frame */
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/ZenMaruGothic-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/ZenMaruGothic-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Zen Maru Gothic';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/ZenMaruGothic-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Zen Old Mincho';
+  font-weight: 700;
+  font-display: swap;
+  src: url('../assets/fonts/ZenOldMincho-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Instrument Serif';
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+}
 
 *,
 *::before,
@@ -7,14 +42,13 @@
 }
 
 html {
-  background: var(--ground);
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-sign);
+  font-family: var(--font-sans);
   -webkit-text-size-adjust: 100%;
-  /* Jump links land below the sticky route strip, not under it. */
-  scroll-padding-top: calc(var(--strip-h) + var(--space-5));
-  scrollbar-color: var(--ink-2) var(--ground);
-  caret-color: var(--line);
+  scroll-padding-top: var(--space-6);
+  scrollbar-color: var(--line) var(--bg);
+  caret-color: var(--accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -23,19 +57,24 @@ html {
   }
 }
 
-/* The platform floor: faint tile joints under every pale section. Panels and the blue concourse cover it. */
+/* No background on body: the page colour is on html, so the contour layer below can sit between the two. */
 body {
   margin: 0;
-  background-color: var(--ground);
-  background-image:
-    linear-gradient(var(--ground-tile) 1px, transparent 1px),
-    linear-gradient(90deg, var(--ground-tile) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  background-position: center top;
   font-size: var(--text-base);
-  line-height: 1.55;
+  line-height: 1.6;
   font-kerning: normal;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* The app's backdrop: faint contour lines, like a topographic map, that stay put while the page moves over them. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('/images/topo.svg') center / cover no-repeat;
+  pointer-events: none;
 }
 
 h1,
@@ -43,9 +82,9 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.15;
   text-wrap: balance;
 }
 
@@ -83,22 +122,25 @@ a {
 button {
   font: inherit;
   color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
 }
 
 ::selection {
-  background: var(--line);
-  color: var(--on-line);
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
-/* Focus is the platform edge: a yellow band with a navy rim, readable on white, tile and blue alike. */
 :focus-visible {
-  outline: 3px solid var(--edge);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 3px var(--ink);
+  outline: 2px solid var(--accent-deep);
+  outline-offset: 4px;
+  border-radius: 0.75rem;
 }
 
 .wrap {
-  width: min(100% - 2 * var(--gutter), 78rem);
+  width: min(100% - 2 * var(--gutter), 76rem);
   margin-inline: auto;
 }
 
@@ -121,10 +163,10 @@ button {
   top: var(--space-3);
   left: var(--space-3);
   padding: var(--space-2) var(--space-4);
-  background: var(--ink);
-  color: var(--panel);
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
   font-weight: 700;
-  border-radius: var(--radius-tile);
   transform: translateY(-200%);
 }
 
@@ -132,21 +174,22 @@ button {
   transform: none;
 }
 
-/* Section frame shared by every station on the page */
-.station {
-  padding-block: var(--space-9) var(--space-8);
+/* Section frame shared by every section on the page */
+.section {
+  padding-block: var(--space-8) var(--space-7);
 }
 
 @media (min-width: 64rem) {
-  .station {
-    padding-block: var(--space-10) var(--space-9);
+  .section {
+    padding-block: var(--space-9) var(--space-8);
   }
 }
 
-.station__intro {
-  max-width: 40rem;
-  margin-top: var(--space-4);
-  color: var(--ink-2);
-  font-size: var(--text-lg);
-  line-height: 1.45;
+/* Small capitals over a heading, like "TODAY'S STAGE" in the app */
+.eyebrow {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }

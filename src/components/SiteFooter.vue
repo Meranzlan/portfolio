@@ -14,14 +14,16 @@ const year = new Date().getFullYear()
         Also on this domain:
         <a href="https://ikko.space" target="_blank" rel="noopener">Ikko, a trip planner<SignIcon name="external" :size="16" /></a>
       </p>
+      <p>Styled after FitXP, an app I’m building.</p>
     </div>
   </footer>
 </template>
 
 <style scoped>
 .footer {
-  padding-block: var(--space-6);
-  color: var(--ink-2);
+  /* Room at the bottom so the corner dial never covers the last line. */
+  padding-block: var(--space-6) calc(var(--space-9) + var(--space-4));
+  color: var(--muted);
   font-size: var(--text-sm);
 }
 
@@ -37,6 +39,6 @@ const year = new Date().getFullYear()
   align-items: center;
   gap: var(--space-1);
   color: var(--ink);
-  font-weight: 600;
+  font-weight: 700;
 }
 </style>

@@ -1,13 +1,15 @@
 <!--
-  ContactSigns.vue — the end of the line: a blue concourse with one sign per way to reach you
-  =============================================================================================
-  The white Email sign leads; WhatsApp, LinkedIn, GitHub and the CV are navy direction signs beside it.
+  ContactSigns.vue — the last section: Koma waves you over to the Email button
+  ============================================================================
+  One big soft card. Email is the pale-blue button (the one call to action on the page), with the address and a
+  copy button under it; the other ways to reach me are tiles beside it.
 -->
 <script setup lang="ts">
 import { ref } from 'vue'
 import { profile, stations } from '../content'
 import SignIcon from './SignIcon.vue'
-import StationCode from './StationCode.vue'
+import KomaCompanion from './KomaCompanion.vue'
+import SoftShape from './SoftShape.vue'
 
 const station = stations.find((item) => item.id === 'contact')
 const copied = ref(false)
@@ -34,144 +36,149 @@ const signs = [
 </script>
 
 <template>
-  <section id="contact" class="concourse" aria-labelledby="contact-title">
+  <section id="contact" class="section contact" aria-labelledby="contact-title" :style="{ '--tint': `var(--${station?.tint ?? 'water'})` }">
     <div class="wrap">
-      <h2 id="contact-title" class="concourse__title">
-        <StationCode class="concourse__code" :code="station?.code ?? ''" />
-        <span>Get in touch</span>
-      </h2>
-      <p class="concourse__intro">Email works best. Everything else is here too.</p>
-
-      <div class="concourse__signs">
-        <div class="mail">
-          <a class="mail__sign" :href="`mailto:${profile.email}`">
-            <SignIcon name="mail" :size="30" />
-            <span class="mail__label">Email me</span>
-            <span class="mail__arrow"><SignIcon name="arrow-right" :size="26" /></span>
-          </a>
-          <div class="mail__address">
-            <span class="mail__text">{{ profile.email }}</span>
-            <button type="button" class="mail__copy" @click="copyEmail">
-              <SignIcon :name="copied ? 'check' : 'copy'" :size="18" />
-              <span>{{ copied ? 'Copied' : 'Copy address' }}</span>
-            </button>
-            <span class="visually-hidden" aria-live="polite">{{ copied ? 'Email address copied' : '' }}</span>
+      <SoftShape class="card" :radius="32" :seed="7">
+        <div class="card__hello">
+          <KomaCompanion class="card__koma" :size="88" />
+          <div>
+            <h2 id="contact-title" class="card__title">
+              <span class="card__code nums" aria-hidden="true">{{ station?.code }}</span>
+              Get in touch
+            </h2>
+            <p class="card__intro">Email works best. Everything else is here too.</p>
           </div>
         </div>
 
-        <ul class="directions">
-          <li v-for="sign in signs" :key="sign.label">
-            <a
-              class="direction"
-              :href="sign.href"
-              :target="sign.external ? '_blank' : undefined"
-              :rel="sign.external ? 'noopener' : undefined"
-              :download="sign.external ? undefined : ''"
-            >
-              <SignIcon :name="sign.icon" :size="24" />
-              <span class="direction__words">
-                <span class="direction__label">{{ sign.label }}</span>
-                <span class="direction__detail nums">{{ sign.detail }}</span>
-              </span>
-              <SignIcon :name="sign.external ? 'arrow-right' : 'download'" :size="22" class="direction__arrow" />
-            </a>
-          </li>
-        </ul>
-      </div>
+        <div class="card__ways">
+          <div class="mail">
+            <SoftShape tag="a" class="mail__button" :seed="12" :href="`mailto:${profile.email}`">
+              <SignIcon name="mail" :size="26" />
+              <span>Email me</span>
+              <SignIcon name="arrow-right" :size="22" class="mail__arrow" />
+            </SoftShape>
+            <div class="mail__address">
+              <span class="mail__text">{{ profile.email }}</span>
+              <SoftShape tag="button" type="button" class="mail__copy" :seed="4" @click="copyEmail">
+                <SignIcon :name="copied ? 'check' : 'copy'" :size="18" />
+                <span>{{ copied ? 'Copied' : 'Copy address' }}</span>
+              </SoftShape>
+              <span class="visually-hidden" aria-live="polite">{{ copied ? 'Email address copied' : '' }}</span>
+            </div>
+          </div>
+
+          <ul class="ways">
+            <li v-for="(sign, index) in signs" :key="sign.label">
+              <SoftShape
+                tag="a"
+                class="way"
+                :radius="20"
+                :seed="index + 20"
+                :href="sign.href"
+                :target="sign.external ? '_blank' : undefined"
+                :rel="sign.external ? 'noopener' : undefined"
+                :download="sign.external ? undefined : ''"
+              >
+                <SignIcon :name="sign.icon" :size="22" class="way__icon" />
+                <span class="way__words">
+                  <span class="way__label">{{ sign.label }}</span>
+                  <span class="way__detail nums">{{ sign.detail }}</span>
+                </span>
+                <SignIcon :name="sign.external ? 'arrow-right' : 'download'" :size="20" class="way__arrow" />
+              </SoftShape>
+            </li>
+          </ul>
+        </div>
+      </SoftShape>
     </div>
   </section>
 </template>
 
 <style scoped>
-.concourse {
-  padding-block: var(--space-9);
-  background: var(--line);
-  color: var(--on-line);
+.contact {
+  padding-bottom: var(--space-9);
+}
+
+.card {
+  --soft-fill: var(--surface);
+  --soft-stroke: var(--line);
+  display: grid;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-5);
 }
 
 @media (min-width: 64rem) {
-  .concourse {
-    padding-block: var(--space-10);
+  .card {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    align-items: center;
+    gap: var(--space-7);
+    padding: var(--space-8) var(--space-7);
   }
 }
 
-.concourse ::selection {
-  background: var(--panel);
-  color: var(--ink);
+.card__hello {
+  display: grid;
+  gap: var(--space-5);
 }
 
-.concourse__title {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3) var(--space-4);
+.card__title {
   font-size: var(--text-3xl);
 }
 
-/* On the blue concourse the code tag turns white so it stays a tag, not a hole. */
-.concourse__code {
-  background: var(--on-line);
-  color: var(--line);
-  font-size: 1.125rem;
+.card__code {
+  display: block;
+  color: var(--tint);
+  font-family: var(--font-numeral);
+  font-size: var(--text-2xl);
+  font-weight: 400;
+  line-height: 1;
 }
 
-.concourse__intro {
-  margin-top: var(--space-4);
-  color: var(--line-pale);
+.card__intro {
+  margin-top: var(--space-3);
+  color: var(--muted);
   font-size: var(--text-lg);
 }
 
-.concourse__signs {
+.card__ways {
   display: grid;
-  gap: var(--space-6);
-  margin-top: var(--space-7);
+  gap: var(--space-5);
 }
 
-@media (min-width: 64rem) {
-  .concourse__signs {
-    grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
-    align-items: start;
-  }
+.mail {
+  display: grid;
+  gap: var(--space-3);
 }
 
-.mail__sign {
+.mail__button {
+  --soft-fill: var(--accent);
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  min-height: 6rem;
-  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-6);
-  border-radius: var(--radius-sign);
-  background: var(--panel);
-  color: var(--ink);
+  gap: var(--space-3);
+  min-height: 4.5rem;
+  padding: 0 var(--space-6);
+  color: var(--on-accent);
+  font-size: var(--text-xl);
+  font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 2px 4px rgb(6 16 48 / 0.2), 0 24px 40px -22px rgb(6 16 48 / 0.7);
-  transition: transform 0.25s var(--ease-out);
-}
-
-.mail__label {
-  flex: 1;
-  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
-  font-weight: 800;
-  letter-spacing: -0.01em;
+  transition: transform 0.3s var(--spring);
 }
 
 .mail__arrow {
-  display: grid;
-  place-items: center;
-  align-self: stretch;
-  width: 5rem;
-  border-radius: var(--radius-tile);
-  background: var(--line);
-  color: var(--on-line);
-  transition: transform 0.3s var(--ease-out);
+  margin-left: auto;
+  transition: transform 0.3s var(--spring);
 }
 
-.mail__sign:hover .mail__arrow {
-  transform: translateX(0.25rem);
+.mail__button:hover {
+  --soft-fill: var(--accent-deep);
 }
 
-.mail__sign:active {
-  transform: translateY(1px);
+.mail__button:hover .mail__arrow {
+  transform: translateX(0.3rem);
+}
+
+.mail__button:active {
+  transform: scale(0.98);
 }
 
 .mail__address {
@@ -179,87 +186,77 @@ const signs = [
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2) var(--space-4);
-  margin-top: var(--space-4);
+  padding-inline: var(--space-2);
 }
 
 .mail__text {
-  font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: 700;
   overflow-wrap: anywhere;
 }
 
 .mail__copy {
+  --soft-fill: transparent;
+  --soft-stroke: var(--line);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 2.75rem;
+  min-height: 2.5rem;
   padding: 0 var(--space-4);
-  border: 2px solid var(--line-pale);
-  border-radius: var(--radius-tile);
-  background: transparent;
-  color: var(--on-line);
+  color: var(--muted);
+  font-size: var(--text-sm);
   font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.2s var(--ease-out);
 }
 
 .mail__copy:hover {
-  background: rgb(255 255 255 / 0.12);
+  --soft-stroke: var(--accent);
+  color: var(--ink);
 }
 
-.directions {
+.ways {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
-@media (min-width: 40rem) and (max-width: 63.99rem) {
-  .directions {
+@media (min-width: 36rem) {
+  .ways {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-/* Navy direction signs: pictogram, words, arrow. */
-.direction {
+.way {
+  --soft-fill: var(--raised);
   display: flex;
   align-items: center;
-  gap: var(--space-4);
-  min-height: 4.5rem;
-  padding: var(--space-3) var(--space-5);
-  border-radius: var(--radius-sign);
-  background: var(--sign-dark);
-  color: var(--on-line);
+  gap: var(--space-3);
+  min-height: 4rem;
+  padding: var(--space-3) var(--space-4);
   text-decoration: none;
-  transition: background-color 0.2s var(--ease-out);
 }
 
-.direction:hover {
-  background: var(--sign-dark-hover);
+.way:hover {
+  --soft-fill: var(--line);
 }
 
-.direction__words {
-  display: flex;
+.way__icon {
+  color: var(--tint);
+}
+
+.way__words {
+  display: grid;
   flex: 1;
-  flex-direction: column;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
-.direction__label {
-  font-size: var(--text-lg);
+.way__label {
   font-weight: 700;
 }
 
-.direction__detail {
-  color: var(--line-pale);
-  font-family: var(--font-code);
-  font-size: 1rem;
-  font-weight: 600;
+.way__detail {
+  color: var(--muted);
+  font-size: var(--text-sm);
 }
 
-.direction__arrow {
-  transition: transform 0.3s var(--ease-out);
-}
-
-.direction:hover .direction__arrow {
-  transform: translateX(0.2rem);
+.way__arrow {
+  color: var(--muted);
 }
 </style>

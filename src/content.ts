@@ -6,10 +6,17 @@
  * Leave `src` empty and the page shows a labelled placeholder in that slot instead.
  */
 
+/** The app's place colours (see tokens.css). Each section, and each project, wears one. */
+export type Tint = 'water' | 'move' | 'star' | 'food' | 'looks' | 'you' | 'weight'
+
 export interface Station {
   id: string
+  /** Its number on the page, shown small over the section title. */
   code: string
   label: string
+  /** The icon in its pebble on the corner dial (an id from SignIcons.vue). */
+  icon: string
+  tint: Tint
 }
 
 export interface Picture {
@@ -29,8 +36,9 @@ export interface Fact {
 
 export interface Project {
   id: string
-  /** The app's stop code on the Shipped apps line, shown in its roundel. Two or three letters. */
+  /** Two or three letters, shown in the project's pebble badge. */
   code: string
+  tint: Tint
   name: string
   summary: string
   /** The label grid every project carries, like the info panel on a platform. */
@@ -38,6 +46,8 @@ export interface Project {
   highlights: string[]
   stack: string[]
   screens: AppScreen[]
+  /** An optional wide picture under the screens, such as a sheet of in-app art. */
+  banner?: Picture
   link?: { label: string; href: string }
   /** 'feature' gets a full-width panel, 'compact' shares a row. */
   size: 'feature' | 'compact'
@@ -49,7 +59,7 @@ export interface Stop {
   where: string
   when: string
   notes: string[]
-  /** The station you are at now: drawn with the "You are here" marker. */
+  /** Where you are now: drawn as the lit stone on the trail. */
   current?: boolean
 }
 
@@ -64,14 +74,14 @@ export interface Photo extends Picture {
   shape: 'landscape' | 'portrait' | 'square'
 }
 
-/** The sections, in page order. The route strip draws one stop per station. */
+/** The sections, in page order. The corner dial shows one place per section. */
 export const stations: Station[] = [
-  { id: 'start', code: 'IA01', label: 'Start' },
-  { id: 'apps', code: 'IA02', label: 'Apps' },
-  { id: 'experience', code: 'IA03', label: 'Experience' },
-  { id: 'skills', code: 'IA04', label: 'Skills' },
-  { id: 'highlights', code: 'IA05', label: 'Highlights' },
-  { id: 'contact', code: 'IA06', label: 'Contact' },
+  { id: 'start', code: '01', label: 'Start', icon: 'home', tint: 'you' },
+  { id: 'apps', code: '02', label: 'Apps', icon: 'device', tint: 'food' },
+  { id: 'experience', code: '03', label: 'Experience', icon: 'briefcase', tint: 'move' },
+  { id: 'skills', code: '04', label: 'Skills', icon: 'code', tint: 'looks' },
+  { id: 'highlights', code: '05', label: 'Highlights', icon: 'award', tint: 'star' },
+  { id: 'contact', code: '06', label: 'Contact', icon: 'mail', tint: 'water' },
 ]
 
 export const profile = {
@@ -88,16 +98,16 @@ export const profile = {
   github: 'https://github.com/Meranzlan',
   cv: '/cv/Imran-Azlan-Resume.pdf',
   /*
-   * A cut-out (transparent PNG or WebP of just you, no background) stands on the blue field and breaks
-   * out of its top edge. A normal photo sits in a lightbox frame instead: set cutout to false.
+   * The portrait sits inside the big wavy ring at the top of the page. Any photo works: it is cropped to a pebble.
    */
-  portrait: { src: '', alt: 'Imran Azlan', cutout: true },
+  portrait: { src: '', alt: 'Imran Azlan' },
 }
 
 export const projects: Project[] = [
   {
     id: 'jakim-touch',
     code: 'JT',
+    tint: 'water',
     name: 'JAKIM Touch',
     summary:
       'The official JAKIM app, rebuilt from the ground up in Flutter for iOS, Android and Huawei phones.',
@@ -124,6 +134,7 @@ export const projects: Project[] = [
   {
     id: 'i-kredikom',
     code: 'IK',
+    tint: 'weight',
     name: 'i-Kredikom 2.0',
     summary:
       'KPKT’s app for finding licensed moneylenders and pawnbrokers, rebuilt from the ground up in Flutter.',
@@ -142,14 +153,55 @@ export const projects: Project[] = [
     ],
     stack: ['Flutter', 'Dart', 'Riverpod', 'OIDC + PKCE', 'OpenStreetMap', 'FCM'],
     screens: [
-      { src: '', alt: 'i-Kredikom lender map', device: 'phone' },
-      { src: '', alt: 'i-Kredikom loan calculator', device: 'phone' },
+      { src: '/images/i-kredikom/home.webp', alt: 'i-Kredikom 2.0 home: announcements and services', device: 'phone' },
+      { src: '/images/i-kredikom/map.webp', alt: 'i-Kredikom 2.0 map of licensed lenders, with a lender’s details open', device: 'phone' },
+      { src: '/images/i-kredikom/calculator.webp', alt: 'i-Kredikom 2.0 loan calculator showing total interest and monthly instalment', device: 'phone' },
+      { src: '/images/i-kredikom/licence.webp', alt: 'i-Kredikom 2.0 licence check result for a moneylender', device: 'phone' },
     ],
+    banner: {
+      src: '/images/i-kredikom/banner.webp',
+      alt: 'i-Kredikom 2.0 store banner: “Semak lesen sebelum meminjam”, check the licence before you borrow',
+    },
+    size: 'feature',
+  },
+  {
+    id: 'fitxp',
+    code: 'FX',
+    tint: 'star',
+    name: 'FitXP',
+    summary:
+      'A calorie and fitness tracker that plays like a game, built around Malaysian food. Snap a meal and your day turns into stars, streaks, quests and a weekly boss. Every screen on this page borrows its look.',
+    facts: [
+      { label: 'Type', value: 'Personal project' },
+      { label: 'Since', value: 'November 2025' },
+      { label: 'Food data', value: '1,660 foods' },
+      { label: 'Status', value: 'In development' },
+    ],
+    highlights: [
+      'Snap a meal and it becomes a cut-out sticker on your day, cut from the photo on the phone with ML Kit.',
+      'A test-first game engine: XP, daily stars, streaks, weekly bosses, quests and collectible cards only change through one dispatch, so every rule has a test.',
+      'Offline first: a drift (SQLite) database on the phone is the source of truth, and a small Laravel API ships newer food data when there is a connection.',
+      'A versioned food file of local dishes with stable ids, sourced from USDA FoodData Central and Singapore HPB data, with side-dish chips for plates like nasi lemak.',
+      'Health guardrails built in: a calorie floor, a warning on very low targets, and neutral BMI wording.',
+      'Every shape is drawn in code (wavy pills, pebbles, contour lines, the corner dial), checked by golden tests in light, dark and large text.',
+    ],
+    stack: ['Flutter', 'Dart', 'BLoC', 'drift (SQLite)', 'ML Kit', 'Laravel'],
+    screens: [
+      { src: '/images/fitxp/today.webp', alt: 'FitXP Today: kcal left in a wavy ring, water, weight and steps trackers, and meal plates', device: 'phone' },
+      { src: '/images/fitxp/log.webp', alt: 'FitXP log sheet: snap a meal or search Malaysian dishes like nasi lemak', device: 'phone' },
+      { src: '/images/fitxp/progress.webp', alt: 'FitXP Progress: this week’s boss, the level, cards and trophies', device: 'phone' },
+      { src: '/images/fitxp/dial.webp', alt: 'FitXP corner dial open, with Water, Exercise, Food, Looks and Progress', device: 'phone' },
+    ],
+    banner: {
+      src: '/images/fitxp/cards.webp',
+      alt: 'A sheet of FitXP’s collectible cards: pebble-shaped scenes for each world, with gold trophy cards',
+    },
     size: 'feature',
   },
   {
     id: 'ikko',
     code: 'IKO',
+    tint: 'looks',
     name: 'Ikko',
     summary:
       'A trip planner for a Kansai trip: a Vue and Laravel web app, plus a Flutter Android app on the same API.',
@@ -174,27 +226,9 @@ export const projects: Project[] = [
     size: 'compact',
   },
   {
-    id: 'fitxp',
-    code: 'FX',
-    name: 'FitXP',
-    summary:
-      'An offline-first fitness tracker that turns calorie and macro logs into levels, quests and an evolving avatar.',
-    facts: [
-      { label: 'Type', value: 'Personal project' },
-      { label: 'Since', value: 'November 2025' },
-    ],
-    highlights: [
-      'BLoC across every feature module.',
-      'Flame engine sprite animation alongside custom painters.',
-      'Hive storage, so everything works offline.',
-    ],
-    stack: ['Flutter', 'BLoC', 'Flame', 'Hive'],
-    screens: [{ src: '', alt: 'FitXP avatar and quests', device: 'phone' }],
-    size: 'compact',
-  },
-  {
     id: 'recipease',
     code: 'RE',
+    tint: 'move',
     name: 'Recipease',
     summary:
       'A cooking assistant that recognises ingredients in a photo with an on-device CNN, then suggests recipes.',
@@ -258,7 +292,7 @@ export const skillLines: SkillLine[] = [
   },
   {
     name: 'Web and back end',
-    items: ['Vue', 'Laravel', 'REST API design', 'SQL', 'SQLite', 'Hive', 'Firebase Cloud Messaging', '.NET (basic)'],
+    items: ['Vue', 'Laravel', 'REST API design', 'SQL', 'SQLite', 'drift', 'Hive', 'Firebase Cloud Messaging', '.NET (basic)'],
   },
   { name: 'Machine learning', items: ['TensorFlow Lite', 'CNN', 'OCR', 'Object detection'] },
   {

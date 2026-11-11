@@ -1,36 +1,37 @@
 <!--
-  ExperienceLine.vue — work and study as one line running down the page
-  ======================================================================
-  Newest first. The station you are at now wears the yellow "You are here" marker; the oldest stop ends the
-  line with a buffer bar, the way a line map draws its terminus.
+  ExperienceLine.vue — where I've worked and studied, as a trail of stones
+  =========================================================================
+  Like the trail to the day's box in the app's quests: a dotted path down the margin, one stone per stop. The stop
+  I'm at now is the lit stone, with a "You are here" pill.
 -->
 <script setup lang="ts">
 import { journey, stations } from '../content'
+import SoftShape from './SoftShape.vue'
 import StationHeading from './StationHeading.vue'
 
 const station = stations.find((item) => item.id === 'experience')
 </script>
 
 <template>
-  <section id="experience" class="station experience" aria-labelledby="experience-title">
+  <section id="experience" class="section" aria-labelledby="experience-title">
     <div class="wrap">
-      <StationHeading heading-id="experience-title" :code="station?.code ?? ''" title="Experience and education" />
+      <StationHeading heading-id="experience-title" :station="station" title="Experience and education" />
 
-      <ol class="line">
-        <li v-for="stop in journey" :key="stop.place" class="line__stop" :class="{ 'line__stop--here': stop.current }">
-          <p class="line__when nums">{{ stop.when }}</p>
-          <span class="line__dot" aria-hidden="true" />
-          <div class="line__body">
-            <h3 class="line__place">
+      <ol class="trail">
+        <li v-for="(stop, index) in journey" :key="stop.place" class="trail__stop" :class="{ 'trail__stop--here': stop.current }">
+          <SoftShape class="trail__stone" shape="pebble" :seed="index * 5 + 2" :wobble="0.14" aria-hidden="true" />
+          <SoftShape class="trail__card" :radius="24" :seed="index + 40">
+            <p class="trail__when nums">{{ stop.when }}</p>
+            <h3 class="trail__place">
               {{ stop.place }}
-              <span v-if="stop.current" class="line__here">You are here</span>
+              <SoftShape v-if="stop.current" tag="span" class="trail__here" :seed="9">You are here</SoftShape>
             </h3>
-            <p class="line__title">{{ stop.title }}</p>
-            <p class="line__where">{{ stop.where }}</p>
-            <ul v-if="stop.notes.length" class="line__notes">
+            <p class="trail__title">{{ stop.title }}</p>
+            <p class="trail__where">{{ stop.where }}</p>
+            <ul v-if="stop.notes.length" class="trail__notes">
               <li v-for="note in stop.notes" :key="note">{{ note }}</li>
             </ul>
-          </div>
+          </SoftShape>
         </li>
       </ol>
     </div>
@@ -38,140 +39,104 @@ const station = stations.find((item) => item.id === 'experience')
 </template>
 
 <style scoped>
-.experience {
-  background: var(--panel);
-  border-block: 1px solid var(--rule);
+.trail {
+  --stone: 1.75rem;
+  display: grid;
+  gap: var(--space-5);
+  max-width: 52rem;
 }
 
-.line {
-  --rail-x: 0.75rem;
+.trail__stop {
   position: relative;
   display: grid;
-  gap: var(--space-7);
-  max-width: 62rem;
+  grid-template-columns: var(--stone) minmax(0, 1fr);
+  gap: var(--space-4);
 }
 
-/* The rail, and the buffer bar that ends it under the oldest stop. */
-.line::before,
-.line::after {
+@media (min-width: 48rem) {
+  .trail__stop {
+    gap: var(--space-5);
+  }
+}
+
+/* The dotted path between stones */
+.trail__stop:not(:last-child)::after {
   content: '';
   position: absolute;
-  background: var(--line);
+  top: calc(var(--space-5) + var(--stone));
+  bottom: calc(-1 * var(--space-5) + 0.25rem);
+  left: calc(var(--stone) / 2 - 2px);
+  width: 4px;
+  background: radial-gradient(circle, var(--track) 2px, transparent 2.2px) center top / 4px 0.75rem repeat-y;
 }
 
-.line::before {
-  top: 0.75rem;
-  bottom: 0.25rem;
-  left: calc(var(--rail-x) - 0.1875rem);
-  width: 0.375rem;
-  border-radius: 999px 999px 0 0;
+.trail__stone {
+  --soft-fill: var(--track);
+  width: var(--stone);
+  height: var(--stone);
+  margin-top: var(--space-5);
 }
 
-.line::after {
-  bottom: 0;
-  left: calc(var(--rail-x) - 0.875rem);
-  width: 1.75rem;
-  height: 0.375rem;
-  border-radius: 999px;
-  background: var(--ink);
-}
-
-.line__stop {
-  position: relative;
-  display: grid;
-  grid-template-columns: calc(var(--rail-x) * 2) minmax(0, 1fr);
-  column-gap: var(--space-5);
-  padding-bottom: var(--space-2);
-}
-
-.line__when {
-  grid-column: 2;
-  color: var(--ink-2);
-  font-family: var(--font-code);
-  font-size: 1.0625rem;
-  font-weight: 600;
-}
-
-.line__dot {
-  position: absolute;
-  top: 0.25rem;
-  left: calc(var(--rail-x) - 0.6875rem);
-  width: 1.375rem;
-  height: 1.375rem;
+.trail__stop--here .trail__stone {
+  --soft-fill: var(--move);
+  box-shadow: 0 0 0 0.4rem rgb(233 154 124 / 0.18);
   border-radius: 50%;
-  background: var(--panel);
-  box-shadow: inset 0 0 0 0.25rem var(--ink);
 }
 
-.line__stop--here .line__dot {
-  background: var(--edge);
-  box-shadow:
-    inset 0 0 0 0.25rem var(--ink),
-    0 0 0 0.375rem var(--panel);
+.trail__card {
+  --soft-fill: var(--surface);
+  --soft-stroke: var(--line);
+  padding: var(--space-5);
 }
 
-.line__body {
-  grid-column: 2;
+.trail__stop--here .trail__card {
+  --soft-stroke: var(--move);
 }
 
-.line__place {
+.trail__when {
+  color: var(--muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.trail__place {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2) var(--space-3);
   margin-top: var(--space-1);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
 }
 
-.line__here {
-  padding: 0.3rem 0.6rem 0.25rem;
-  border-radius: var(--radius-tile);
-  background: var(--sign-dark);
-  color: var(--edge);
-  font-family: var(--font-code);
-  font-size: 1rem;
+.trail__here {
+  --soft-fill: var(--move);
+  padding: 0.1rem var(--space-3);
+  color: var(--on-accent);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.line__title {
+.trail__title {
   margin-top: var(--space-2);
-  font-size: var(--text-lg);
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.line__where {
-  color: var(--ink-2);
+.trail__where {
+  color: var(--muted);
 }
 
-.line__notes {
+.trail__notes {
   display: grid;
   gap: var(--space-2);
-  max-width: 44rem;
   margin-top: var(--space-3);
-  color: var(--ink-2);
+  color: var(--muted);
 }
 
-/* Wide screens: dates get their own column to the left of the rail, like a timetable. */
-@media (min-width: 48rem) {
-  .line {
-    --rail-x: 12.25rem;
-  }
-
-  .line__stop {
-    grid-template-columns: 10.5rem minmax(0, 1fr);
-    column-gap: calc(var(--space-7) + var(--space-2));
-  }
-
-  .line__when {
-    grid-column: 1;
-    grid-row: 1;
-    padding-top: 0.6rem;
-    text-align: right;
-  }
-
-  .line__dot {
-    top: 0.65rem;
-  }
+.trail__notes li {
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--line);
 }
 </style>
