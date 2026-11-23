@@ -1,8 +1,16 @@
 /* Self-hosted fonts (SIL OFL, licences alongside), so the page makes no font requests elsewhere. */
 @font-face {
-  font-family: 'Instrument Serif';
-  src: url('../assets/fonts/InstrumentSerif-Regular.ttf') format('truetype');
-  font-weight: 400;
+  font-family: 'Newsreader';
+  src: url('../assets/fonts/Newsreader-Variable.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../assets/fonts/Newsreader-Italic-Variable.woff2') format('woff2');
+  font-weight: 200 800;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {
@@ -43,9 +51,9 @@ h1,
 h2,
 h3 {
   font-family: var(--serif);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: var(--tracking-tight);
-  line-height: 1.1;
+  line-height: 1.15;
   margin: 0;
 }
 
@@ -76,10 +84,13 @@ a {
   color: var(--accent);
 }
 
+/* Indexical metadata: stamped, uppercase, slightly spaced, like an archive label. */
 .mono {
   font-family: var(--mono);
   font-size: var(--meta);
   line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--ink-2);
 }
 
@@ -94,11 +105,12 @@ a {
   font-family: var(--mono);
   font-size: 12px;
   line-height: 1;
-  padding: 6px 10px;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-pill);
-  background: var(--surface);
-  color: var(--ink);
+  background: var(--canvas);
+  color: var(--ink-2);
 }
 
 :focus-visible {

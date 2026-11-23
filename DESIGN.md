@@ -5,7 +5,7 @@ colors:
   light: { canvas: "#FAF8F5", surface: "#F2EFE9", ink: "#1E1E1C", ink-2: "#7A756D", accent: "#C86D51", accent-tint: "#F4E6E1", hairline: "#E5E0D8" }
   dark:  { canvas: "#121212", surface: "#1C1C1A", ink: "#E8E4DC", ink-2: "#9A948B", accent: "#D97D62", accent-tint: "rgba(217,125,98,0.14)", hairline: "#2A2A27" }
 typography:
-  serif: "Instrument Serif 400, tracking -0.02em: name and headings"
+  serif: "Newsreader (variable, 500, with italic), tracking -0.02em: name, headings, italic section dividers"
   sans: "Inter (variable), 16.5px / 1.6: body"
   mono: "JetBrains Mono (variable), 12–13px: dates, companies, stacks, tags"
 ---
@@ -23,7 +23,11 @@ corporate SaaS clutter.
   `index.html` applies it before paint).
 - **Elevation is a hairline.** 1px solid `--hairline` separates sections and frames cards. Never a box-shadow.
 - **Radii:** 14px project cards and the portrait, 10px buttons and screenshots, 999px pills.
-- **Hover:** cards shift from `--canvas` to `--surface` over 150ms; text links are ink with a terracotta underline.
+- **Cards** are `--surface` (sand) on the `--canvas` page; hover deepens to `--surface-press` over 150ms. Text links
+  are ink with a terracotta underline.
+- **Metadata** (`.mono`) is uppercase JetBrains Mono with 0.06em tracking. Tags are mono pills on canvas, taupe text.
+- **Section titles** are italic Newsreader with a hairline running to the edge, like the notebook's month divider.
+- Reference: Imran's Stitch mobile mock "Tactile Stationery Minimalist" (2026-11-23), adapted to a web page.
 - **Accent** (`--accent`) is for link underlines, focus rings and the one status tag (`--accent-tint` fill).
 - **Fonts** are self-hosted in `src/assets/fonts/` with their OFL licences.
 

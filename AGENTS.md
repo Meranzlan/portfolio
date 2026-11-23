@@ -19,7 +19,7 @@ npm run type-check  # vue-tsc only
 2. **Never invent claims.** No download counts, ratings, launch dates, awards or testimonials that the owner has not
    given. MyTax (LHDN) stays off the site until it launches. → `PRODUCT.md`
 3. **Editorial Tactile Minimalism** (owner, 2026-11-23; the FitXP dark look is retired). Warm paper, 1px hairline
-   borders, Instrument Serif headings, Inter body, JetBrains Mono metadata. No box-shadows, no gradients, no SaaS
+   borders, Newsreader headings, Inter body, JetBrains Mono metadata. No box-shadows, no gradients, no SaaS
    clutter. Light is primary; dark follows the system or the toggle. → `DESIGN.md`
 4. **Tokens only.** Colours, type, radii and timing come from `src/styles/tokens.css`. Never a hex in a component.
 5. **Learning project.** The owner is a Flutter developer learning Vue: conventional, readable code with a short

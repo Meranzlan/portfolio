@@ -8,7 +8,7 @@ defineProps<{ project: Project }>()
 <template>
   <article :id="project.id" class="card">
     <p class="mono meta">
-      <span v-for="(m, i) in project.meta" :key="m">{{ m }}<span v-if="i < project.meta.length - 1" aria-hidden="true"> · </span></span>
+      <span v-for="(m, i) in project.meta" :key="m"><span v-if="i > 0" aria-hidden="true">· </span>{{ m }}</span>
     </p>
     <h3 class="name">{{ project.name }}</h3>
     <p class="tagline">{{ project.tagline }}</p>
@@ -45,20 +45,23 @@ defineProps<{ project: Project }>()
   border: 1px solid var(--hairline);
   border-radius: var(--radius-card);
   padding: 28px;
-  background: var(--canvas);
+  background: var(--surface);
   transition: background var(--hover);
 }
 .card:hover {
-  background: var(--surface);
+  background: var(--surface-press);
 }
 .meta {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.6em;
   margin-bottom: 10px;
 }
 .meta > span {
   white-space: nowrap;
 }
 .name {
-  font-size: 34px;
+  font-size: 32px;
 }
 .tagline {
   color: var(--ink-2);
@@ -66,8 +69,10 @@ defineProps<{ project: Project }>()
 }
 .status {
   display: inline-block;
+  max-width: 100%;
   margin-top: 12px;
-  padding: 4px 10px;
+  padding: 4px 12px;
+  border: 1px solid var(--accent);
   border-radius: var(--radius-pill);
   background: var(--accent-tint);
   color: var(--accent);

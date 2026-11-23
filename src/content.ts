@@ -97,7 +97,7 @@ export const projects: Project[] = [
     name: 'FitXP',
     tagline: 'A gamified nutrition and fitness tracker',
     meta: ['Personal project', 'Nov 2025 – Present'],
-    status: 'In development, not on the stores yet',
+    status: 'In development · not on the stores',
     summary:
       'An offline-first Flutter app that turns food, water, exercise and weight logs into levels, quests, boss battles, collectible cards and unlockable companions.',
     points: [

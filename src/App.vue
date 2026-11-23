@@ -170,7 +170,7 @@ const year = new Date().getFullYear()
   border-radius: var(--radius-card);
 }
 .name {
-  font-size: clamp(44px, 7vw, 64px);
+  font-size: clamp(40px, 6.5vw, 56px);
   margin-bottom: 10px;
 }
 .pitch {
@@ -184,12 +184,21 @@ const year = new Date().getFullYear()
 }
 
 .section {
-  border-top: 1px solid var(--hairline);
-  padding: 48px 0;
+  padding: 40px 0;
 }
+/* Section titles read like a notebook's month divider: italic serif, then an ink line to the edge. */
 .heading {
-  font-size: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 26px;
+  font-style: italic;
   margin-bottom: 28px;
+}
+.heading::after {
+  content: '';
+  flex: 1;
+  border-top: 1px solid var(--hairline);
 }
 .cards {
   display: grid;
@@ -272,7 +281,7 @@ const year = new Date().getFullYear()
     align-items: start;
   }
   .section {
-    padding: 40px 0;
+    padding: 32px 0;
   }
 }
 </style>
