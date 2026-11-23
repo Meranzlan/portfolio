@@ -10,8 +10,16 @@ export interface Screen {
   alt: string
 }
 
+/** Which app's colours an entry wears (tokens.css). */
+export type Brand = 'jakim' | 'fitxp' | 'ikredikom'
+
 export interface Project {
   id: string
+  brand: Brand
+  /** The rubber stamp on the entry. */
+  stamp: string
+  /** A short handwritten-style note beside the screens. */
+  note?: string
   name: string
   /** One line under the name: what it is. */
   tagline: string
@@ -22,7 +30,6 @@ export interface Project {
   stack: string[]
   /** Phone screenshots. A project with none shows a text-only card, never a placeholder. */
   screens: Screen[]
-  status?: string
   /** Shows the app's companion, Koma, in the card's corner. */
   companion?: boolean
 }
@@ -62,8 +69,9 @@ export const profile = {
   fullName: 'Muhammad Imran Bin Nor Azlan Shah',
   role: 'Mobile Developer',
   location: 'Putrajaya, Malaysia',
+  now: 'currently: Solution Developer, Mobile, at Zen Computer Systems',
   pitch:
-    'I build Flutter apps for national government clients, end to end and down to the native edges: home-screen widgets, Huawei support, background sync, runtime security and national digital-ID sign-in.',
+    'Government apps by day, a calorie tracker with boss battles by night. I build in Flutter and go all the way down to the native bits most people skip: home-screen widgets, Huawei phones, background sync and digital-ID sign-in.',
   email: 'imranazlan06@gmail.com',
   linkedin: 'https://www.linkedin.com/in/imranazlan',
   github: 'https://github.com/Meranzlan',
@@ -73,6 +81,9 @@ export const profile = {
 export const projects: Project[] = [
   {
     id: 'jakim-touch',
+    brand: 'jakim',
+    stamp: 'In service · iOS · Android · Huawei',
+    note: 'The compass needle settles instead of jittering.',
     name: 'JAKIM Touch',
     tagline: 'The official app of the Department of Islamic Development Malaysia',
     meta: ['JAKIM', 'Zen Computer Systems', '2025 – Present'],
@@ -96,10 +107,12 @@ export const projects: Project[] = [
   },
   {
     id: 'fitxp',
+    brand: 'fitxp',
+    stamp: 'In progress · not on the stores yet',
+    note: 'Koma, the first companion, lives in the corner of every page.',
     name: 'FitXP',
     tagline: 'A gamified nutrition and fitness tracker',
     meta: ['Personal project', 'Nov 2025 – Present'],
-    status: 'In development · not on the stores',
     summary:
       'An offline-first Flutter app that turns food, water, exercise and weight logs into levels, quests, boss battles, collectible cards and unlockable companions.',
     points: [
@@ -120,6 +133,9 @@ export const projects: Project[] = [
   },
   {
     id: 'i-kredikom',
+    brand: 'ikredikom',
+    stamp: 'In service · 4 languages',
+    note: 'The calculator follows the legal caps in the Acts.',
     name: 'i-Kredikom 2.0',
     tagline: 'Find and check licensed moneylenders and pawnbrokers',
     meta: ['KPKT', 'Zen Computer Systems', '2025 – Present'],

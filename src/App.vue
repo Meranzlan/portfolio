@@ -20,11 +20,17 @@ const year = new Date().getFullYear()
 
     <main id="top">
       <section class="intro">
-        <img class="portrait" :src="profile.portrait.src" :alt="profile.portrait.alt" width="480" height="480" />
+        <!-- The portrait is a polaroid taped onto the page. -->
+        <figure class="polaroid">
+          <span class="tape" aria-hidden="true"></span>
+          <img :src="profile.portrait.src" :alt="profile.portrait.alt" width="800" height="800" />
+          <figcaption>hello, I’m Imran</figcaption>
+        </figure>
         <div>
           <h1 class="name">{{ profile.name }}</h1>
           <p class="mono">{{ profile.role }} · {{ profile.location }}</p>
           <p class="pitch">{{ profile.pitch }}</p>
+          <p class="aside">{{ profile.now }}</p>
           <p class="links">
             <a class="link" :href="`mailto:${profile.email}`">Email</a>
             <a class="link" :href="profile.linkedin" rel="noopener" target="_blank">LinkedIn</a>
@@ -36,7 +42,7 @@ const year = new Date().getFullYear()
       <section id="work" class="section">
         <h2 class="heading">Selected work</h2>
         <div class="cards">
-          <ProjectCard v-for="p in projects" :key="p.id" :project="p" />
+          <ProjectCard v-for="(p, i) in projects" :key="p.id" :project="p" :index="i" />
         </div>
       </section>
 
@@ -156,11 +162,44 @@ const year = new Date().getFullYear()
   align-items: start;
   padding: 64px 0 56px;
 }
-.portrait {
+.polaroid {
+  position: relative;
+  margin: 0;
+  max-width: 230px;
+  padding: 10px 10px 36px;
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  transform: rotate(-3deg);
+}
+.polaroid img {
   width: 100%;
   height: auto;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-card);
+}
+.polaroid figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 9px;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-2);
+}
+.tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 84px;
+  height: 24px;
+  background: var(--tape);
+  transform: translateX(-50%) rotate(-4deg);
+}
+.aside {
+  margin-top: 16px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--note);
 }
 .name {
   font-size: clamp(40px, 6.5vw, 56px);
@@ -195,7 +234,7 @@ const year = new Date().getFullYear()
 }
 .cards {
   display: grid;
-  gap: 20px;
+  gap: 36px;
 }
 
 .row {
@@ -263,8 +302,9 @@ const year = new Date().getFullYear()
     gap: 24px;
     padding: 40px 0 40px;
   }
-  .portrait {
-    max-width: 100%;
+  .polaroid {
+    max-width: 220px;
+    margin-left: 6px;
   }
   .row {
     grid-template-columns: 1fr;

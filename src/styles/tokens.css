@@ -13,6 +13,24 @@
   --accent-tint: #f4e6e1;
   --hairline: #e5e0d8;
   --device: #1e1e1c;
+  --paper: #ffffff;
+  --dot: #e2dcd1;
+  --tape: rgba(214, 196, 160, 0.72);
+  --kraft: #d8c4a2;
+  --note: #2f4a7a;
+
+  /* Each app's own colours, the same in both themes: its entry's stub, stamp and card wear them. */
+  --on-brand: #ffffff;
+  --jakim: #0b1a5c;
+  --jakim-hi: #f5c400;
+  --fitxp: #18203a;
+  --fitxp-hi: #a9c6e0;
+  --ikredikom: #8e0e1f;
+  --ikredikom-hi: #ffd4d9;
+  /* Stamps are inked in the app colour on light paper, and in its highlight on dark paper, where navy vanishes. */
+  --jakim-stamp: var(--jakim);
+  --fitxp-stamp: var(--fitxp);
+  --ikredikom-stamp: var(--ikredikom);
 
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -43,6 +61,14 @@
   --accent-tint: rgba(217, 125, 98, 0.14);
   --hairline: #2a2a27;
   --device: #33332f;
+  --paper: #1c1c1a;
+  --dot: #2a2925;
+  --tape: rgba(120, 104, 78, 0.6);
+  --kraft: #5a4c37;
+  --note: #8fa9d8;
+  --jakim-stamp: var(--jakim-hi);
+  --fitxp-stamp: var(--fitxp-hi);
+  --ikredikom-stamp: var(--ikredikom-hi);
   color-scheme: dark;
 }
 
@@ -57,6 +83,14 @@
     --accent-tint: rgba(217, 125, 98, 0.14);
     --hairline: #2a2a27;
   --device: #33332f;
+  --paper: #1c1c1a;
+  --dot: #2a2925;
+  --tape: rgba(120, 104, 78, 0.6);
+  --kraft: #5a4c37;
+  --note: #8fa9d8;
+  --jakim-stamp: var(--jakim-hi);
+  --fitxp-stamp: var(--fitxp-hi);
+  --ikredikom-stamp: var(--ikredikom-hi);
     color-scheme: dark;
   }
 }
