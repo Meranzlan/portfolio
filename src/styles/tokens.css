@@ -26,6 +26,7 @@
   --fitxp: #18203a;
   --fitxp-hi: #a9c6e0;
   --fitxp-water: #88d0d6;
+  --contour-opacity: 0.3;
   --ikredikom: #8e0e1f;
   --ikredikom-hi: #ffd4d9;
   /* Stamps are inked in the app colour on light paper, and in its highlight on dark paper, where navy vanishes. */
@@ -63,6 +64,7 @@
   --hairline: #2a2a27;
   --device: #33332f;
   --paper: #1c1c1a;
+  --contour-opacity: 0.12;
   --dot: #2a2925;
   --tape: rgba(120, 104, 78, 0.6);
   --kraft: #5a4c37;
@@ -85,6 +87,7 @@
     --hairline: #2a2a27;
   --device: #33332f;
   --paper: #1c1c1a;
+  --contour-opacity: 0.12;
   --dot: #2a2925;
   --tape: rgba(120, 104, 78, 0.6);
   --kraft: #5a4c37;

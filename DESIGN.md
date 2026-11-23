@@ -33,7 +33,7 @@ corporate SaaS clutter.
   On phones every entry is one column with the collage under the words.
 - **Metadata** (`.mono`) is uppercase JetBrains Mono with 0.06em tracking. A project's stack is one mono line.
 - **Portrait** is the full photo, uncropped, as a taped polaroid captioned "hello, I'm Imran".
-- **Koma** (FitXP's companion, first stage, blue, as in the app's dark theme) stands at the FitXP entry's bottom-left corner, beside the small phones. FitXP's collage card is Koma's Water blue (`--fitxp-water`) so the dark screens show.
+- **Koma** (FitXP's companion, first stage, blue, as in the app's dark theme) stands at the FitXP entry's bottom-left corner, beside the small phones. FitXP's collage card is Koma's Water blue (`--fitxp-water`), and the entry carries the app's contour lines faintly (`src/assets/contour.svg` as a mask, `--contour-opacity`) so the dark screens show.
   FitXP's screens are rendered from the app in dark mode with sample data, Koma chosen, no debug banner.
 - **Section titles** are italic Newsreader with a hairline running to the edge, like the notebook's month divider.
 - Reference: Imran's Stitch mobile mock "Tactile Stationery Minimalist" (2026-11-23), adapted to a web page.
