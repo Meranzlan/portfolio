@@ -39,7 +39,6 @@ const flip = computed(() => props.index % 2 === 1)
           <span v-if="i === 1 || pasted.length === 1" class="tape" aria-hidden="true"></span>
           <img :src="s.src" :alt="s.alt" width="540" height="1212" loading="lazy" decoding="async" />
         </figure>
-        <KomaCompanion v-if="project.companion" class="companion" :size="64" />
         <p v-if="project.note" class="note">{{ project.note }}</p>
       </div>
     </div>
@@ -50,6 +49,7 @@ const flip = computed(() => props.index % 2 === 1)
         <img :src="s.src" :alt="s.alt" width="540" height="1212" loading="lazy" decoding="async" />
       </figure>
     </div>
+    <KomaCompanion v-if="project.companion" class="companion" :size="72" />
   </article>
 </template>
 
@@ -63,6 +63,8 @@ const flip = computed(() => props.index % 2 === 1)
   --brand: var(--fitxp);
   --brand-hi: var(--fitxp-hi);
   --brand-stamp: var(--fitxp-stamp);
+  /* The app's dark screens vanish on navy card, so FitXP's card is Koma's light blue. */
+  --brand-card: var(--fitxp-hi);
 }
 .brand-ikredikom {
   --brand: var(--ikredikom);
@@ -71,6 +73,7 @@ const flip = computed(() => props.index % 2 === 1)
 }
 
 .entry {
+  position: relative;
   /* A grid item grows to fit its widest child unless told otherwise. */
   min-width: 0;
   background: var(--paper);
@@ -161,7 +164,7 @@ const flip = computed(() => props.index % 2 === 1)
 .card-paper {
   position: absolute;
   inset: 34px 8px 64px 16px;
-  background: var(--brand);
+  background: var(--brand-card, var(--brand));
   border-radius: 4px;
   transform: rotate(2.5deg);
 }
@@ -220,11 +223,11 @@ const flip = computed(() => props.index % 2 === 1)
   transform: translateX(-50%) rotate(-4deg);
   z-index: 1;
 }
+/* Koma stands at the bottom-left corner of the entry, beside the row of small phones. */
 .companion {
   position: absolute;
-  right: 0;
-  top: -6px;
-  z-index: 4;
+  left: 32px;
+  bottom: 28px;
 }
 .note {
   position: absolute;
@@ -299,6 +302,12 @@ const flip = computed(() => props.index % 2 === 1)
   }
   .phone.small {
     width: 92px;
+  }
+  .companion {
+    left: 12px;
+    bottom: 20px;
+    width: 48px;
+    height: auto;
   }
 }
 @media (prefers-reduced-motion: reduce) {
