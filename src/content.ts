@@ -1,315 +1,249 @@
 /*
  * content.ts — everything the page says, in one place
  * ====================================================
- * Edit this file to change the portfolio: add a project, a photo or an achievement here and the page lays
- * it out. Images go in public/images/ and are referenced from the site root, e.g. '/images/jakim-touch-1.webp'.
- * Leave `src` empty and the page shows a labelled placeholder in that slot instead.
+ * The source is Imran's resume. Edit this file to change the site; components only lay it out.
+ * Images go in public/images/ and are referenced from the site root, e.g. '/images/jakim-touch/home.webp'.
  */
 
-/** The app's place colours (see tokens.css). Each section, and each project, wears one. */
-export type Tint = 'water' | 'move' | 'star' | 'food' | 'looks' | 'you' | 'weight'
-
-export interface Station {
-  id: string
-  /** Its number on the page, shown small over the section title. */
-  code: string
-  label: string
-  /** The icon in its pebble on the corner dial (an id from SignIcons.vue). */
-  icon: string
-  tint: Tint
-}
-
-export interface Picture {
-  /** Path under public/, e.g. '/images/portrait.webp'. Empty shows a placeholder. */
+export interface Screen {
   src: string
   alt: string
 }
 
-export interface AppScreen extends Picture {
-  device: 'phone' | 'browser'
-}
-
-export interface Fact {
-  label: string
-  value: string
-}
+/** Which app's colours an entry wears (tokens.css). */
+export type Brand = 'jakim' | 'fitxp' | 'ikredikom'
 
 export interface Project {
   id: string
-  /** Two or three letters, shown in the project's pebble badge. */
-  code: string
-  tint: Tint
+  brand: Brand
+  /** The rubber stamp on the entry. */
+  stamp: string
+  /** A short handwritten-style note beside the screens. */
+  note?: string
   name: string
-  summary: string
-  /** The label grid every project carries, like the info panel on a platform. */
-  facts: Fact[]
-  highlights: string[]
+  /** One line under the name: what it is. */
+  tagline: string
+  /** Mono metadata above the name, e.g. client and dates. */
+  meta: string[]
+  summary?: string
+  points: string[]
   stack: string[]
-  screens: AppScreen[]
-  /** An optional wide picture under the screens, such as a sheet of in-app art. */
-  banner?: Picture
-  link?: { label: string; href: string }
-  /** 'feature' gets a full-width panel, 'compact' shares a row. */
-  size: 'feature' | 'compact'
+  /** Phone screenshots. A project with none shows a text-only card, never a placeholder. */
+  screens: Screen[]
+  /** Shows the app's companion, Koma, in the card's corner. */
+  companion?: boolean
 }
 
-export interface Stop {
-  place: string
-  title: string
+export interface Role {
+  company: string
   where: string
   when: string
-  notes: string[]
-  /** Where you are now: drawn as the lit stone on the trail. */
-  current?: boolean
+  title: string
+  /** Projects inside the role, each with its own bullets. */
+  work: { name: string; client?: string; points: string[] }[]
+  stack: string[]
 }
 
-export interface SkillLine {
+export interface OtherWork {
+  name: string
+  context: string
+  when: string
+  note: string
+}
+
+export interface Study {
+  school: string
+  where: string
+  when: string
+  title: string
+  note: string
+}
+
+export interface SkillGroup {
   name: string
   items: string[]
 }
 
-/** Photos without a `src` are hidden on the live site and shown as placeholders while you run `npm run dev`. */
-export interface Photo extends Picture {
-  caption: string
-  shape: 'landscape' | 'portrait' | 'square'
-}
-
-/** The sections, in page order. The corner dial shows one place per section. */
-export const stations: Station[] = [
-  { id: 'start', code: '01', label: 'Start', icon: 'home', tint: 'you' },
-  { id: 'apps', code: '02', label: 'Apps', icon: 'device', tint: 'food' },
-  { id: 'experience', code: '03', label: 'Experience', icon: 'briefcase', tint: 'move' },
-  { id: 'skills', code: '04', label: 'Skills', icon: 'code', tint: 'looks' },
-  { id: 'highlights', code: '05', label: 'Highlights', icon: 'award', tint: 'star' },
-  { id: 'contact', code: '06', label: 'Contact', icon: 'mail', tint: 'water' },
-]
-
 export const profile = {
   name: 'Imran Azlan',
   fullName: 'Muhammad Imran Bin Nor Azlan Shah',
-  role: 'Mobile developer, Flutter',
+  role: 'Mobile Developer',
   location: 'Putrajaya, Malaysia',
+  now: 'currently: Solution Developer, Mobile, at Zen Computer Systems',
   pitch:
-    'I build Flutter apps for government clients, down to the native edges: home-screen widgets, Huawei support, background sync and national digital-ID login.',
+    'Government apps by day, a calorie tracker with boss battles by night. I build in Flutter and go all the way down to the native bits most people skip: home-screen widgets, Huawei phones, background sync and digital-ID sign-in.',
   email: 'imranazlan06@gmail.com',
-  phoneDisplay: '+60 19-840 0711',
-  whatsapp: 'https://wa.me/60198400711',
   linkedin: 'https://www.linkedin.com/in/imranazlan',
   github: 'https://github.com/Meranzlan',
-  cv: '/cv/Imran-Azlan-Resume.pdf',
-  /*
-   * The portrait sits inside the big wavy ring at the top of the page. Any photo works: it is cropped to a pebble.
-   */
-  portrait: { src: '', alt: 'Imran Azlan' },
+  portrait: { src: '/images/portrait.webp', alt: 'Imran Azlan, smiling, with a city skyline behind him' },
 }
 
 export const projects: Project[] = [
   {
     id: 'jakim-touch',
-    code: 'JT',
-    tint: 'water',
+    brand: 'jakim',
+    stamp: 'In service · iOS · Android · Huawei',
+    note: 'The compass needle settles instead of jittering.',
     name: 'JAKIM Touch',
-    summary:
-      'The official JAKIM app, rebuilt from the ground up in Flutter for iOS, Android and Huawei phones.',
-    facts: [
-      { label: 'Client', value: 'JAKIM' },
-      { label: 'Built at', value: 'Zen Computer Systems' },
-      { label: 'Platforms', value: 'iOS, Android, Huawei' },
-      { label: 'Status', value: 'In service' },
-    ],
-    highlights: [
-      'Home-screen widgets in SwiftUI/WidgetKit and Kotlin show live prayer times synced from the app.',
-      'A runtime layer tells Google from Huawei Mobile Services, ending location and map crashes on Huawei phones.',
-      'A headless WorkManager sync refreshes location, prayer zones, widgets and daily notifications in the background.',
+    tagline: 'The official app of the Department of Islamic Development Malaysia',
+    meta: ['JAKIM', 'Zen Computer Systems', '2025 – Present'],
+    points: [
+      'Rebuilt from the ground up in Flutter, Dart and GetX, shipping on iOS, Google Android and Huawei (HMS).',
+      'A runtime device layer that detects Google vs. Huawei Mobile Services, ending location and map crashes on Huawei phones.',
+      'Native home-screen widgets in SwiftUI/WidgetKit and Kotlin/RemoteViews, showing live prayer times synced from the app.',
+      'A headless WorkManager sync that refreshes location, prayer zones, widgets and daily prayer notifications in the background.',
       'A Qibla compass built on great-circle bearings, steadied by a low-pass filter on the magnetometer.',
-      'freeRASP runtime protection (root and jailbreak detection, anti-tampering) to meet government VAPT.',
+      'A Microsoft Copilot Studio chatbot with secure URL routing, and freeRASP runtime protection to meet government VAPT.',
     ],
-    stack: ['Flutter', 'Dart', 'GetX', 'SwiftUI', 'Kotlin', 'WorkManager'],
+    stack: ['Flutter', 'Dart', 'GetX', 'SwiftUI', 'Kotlin', 'WorkManager', 'Huawei HMS', 'freeRASP'],
     screens: [
-      { src: '', alt: 'JAKIM Touch home screen', device: 'phone' },
-      { src: '', alt: 'JAKIM Touch prayer times widget', device: 'phone' },
+      { src: '/images/jakim-touch/splash.webp', alt: 'JAKIM Touch splash screen with the app logo and a Mula button' },
+      { src: '/images/jakim-touch/home.webp', alt: 'JAKIM Touch home: the next prayer, Zuhur at 1:02 pm, over a mosque photo' },
+      { src: '/images/jakim-touch/home-scrolled.webp', alt: 'JAKIM Touch home scrolled to the services grid, JAKIM news and info' },
+      { src: '/images/jakim-touch/quran.webp', alt: 'JAKIM Touch Smart Quran: search and the list of surahs' },
+      { src: '/images/jakim-touch/prayer-times.webp', alt: 'JAKIM Touch Waktu Solat: the day’s prayer times with alert toggles' },
+      { src: '/images/jakim-touch/kiblat.webp', alt: 'JAKIM Touch Kiblat compass with the Qibla angle and distance to the Kaabah' },
     ],
-    size: 'feature',
-  },
-  {
-    id: 'i-kredikom',
-    code: 'IK',
-    tint: 'weight',
-    name: 'i-Kredikom 2.0',
-    summary:
-      'KPKT’s app for finding licensed moneylenders and pawnbrokers, rebuilt from the ground up in Flutter.',
-    facts: [
-      { label: 'Client', value: 'KPKT' },
-      { label: 'Built at', value: 'Zen Computer Systems' },
-      { label: 'Languages', value: 'Malay, English, Chinese, Tamil' },
-      { label: 'Status', value: 'In service' },
-    ],
-    highlights: [
-      'MyDigital ID 2.0 sign-in over OpenID Connect with PKCE.',
-      'A nationwide map of licensed lenders on OpenStreetMap, with marker clustering.',
-      'Calculators for the legal interest and fee caps in the Moneylenders Act 1951 and Pawnbrokers Act 1972.',
-      'A two-tier memory and disk cache: fewer network calls, and data that still reads offline.',
-      'Push notifications through Firebase Cloud Messaging that open the right screen.',
-    ],
-    stack: ['Flutter', 'Dart', 'Riverpod', 'OIDC + PKCE', 'OpenStreetMap', 'FCM'],
-    screens: [
-      { src: '/images/i-kredikom/home.webp', alt: 'i-Kredikom 2.0 home: announcements and services', device: 'phone' },
-      { src: '/images/i-kredikom/map.webp', alt: 'i-Kredikom 2.0 map of licensed lenders, with a lender’s details open', device: 'phone' },
-      { src: '/images/i-kredikom/calculator.webp', alt: 'i-Kredikom 2.0 loan calculator showing total interest and monthly instalment', device: 'phone' },
-      { src: '/images/i-kredikom/licence.webp', alt: 'i-Kredikom 2.0 licence check result for a moneylender', device: 'phone' },
-    ],
-    banner: {
-      src: '/images/i-kredikom/banner.webp',
-      alt: 'i-Kredikom 2.0 store banner: “Semak lesen sebelum meminjam”, check the licence before you borrow',
-    },
-    size: 'feature',
   },
   {
     id: 'fitxp',
-    code: 'FX',
-    tint: 'star',
+    brand: 'fitxp',
+    stamp: 'In progress · not on the stores yet',
+    note: 'Koma, the first companion, lives in the corner of every page.',
     name: 'FitXP',
+    tagline: 'A gamified nutrition and fitness tracker',
+    meta: ['Personal project', 'Nov 2025 – Present'],
     summary:
-      'A calorie and fitness tracker that plays like a game, built around Malaysian food. Snap a meal and your day turns into stars, streaks, quests and a weekly boss. Every screen on this page borrows its look.',
-    facts: [
-      { label: 'Type', value: 'Personal project' },
-      { label: 'Since', value: 'November 2025' },
-      { label: 'Food data', value: '1,660 foods' },
-      { label: 'Status', value: 'In development' },
+      'An offline-first Flutter app that turns food, water, exercise and weight logs into levels, quests, boss battles, collectible cards and unlockable companions.',
+    points: [
+      'A Malaysian food database of 1,660 foods, served from a Laravel API and synced to the phone for offline use, with photo-based meal logging.',
+      'Home-screen widgets, scheduled notifications, and a Share studio for posting to Instagram, Facebook, Threads and X.',
+      'Illustrations and companion characters drawn in code with custom painters, covered by golden and unit tests.',
     ],
-    highlights: [
-      'Snap a meal and it becomes a cut-out sticker on your day, cut from the photo on the phone with ML Kit.',
-      'A test-first game engine: XP, daily stars, streaks, weekly bosses, quests and collectible cards only change through one dispatch, so every rule has a test.',
-      'Offline first: a drift (SQLite) database on the phone is the source of truth, and a small Laravel API ships newer food data when there is a connection.',
-      'A versioned food file of local dishes with stable ids, sourced from USDA FoodData Central and Singapore HPB data, with side-dish chips for plates like nasi lemak.',
-      'Health guardrails built in: a calorie floor, a warning on very low targets, and neutral BMI wording.',
-      'Every shape is drawn in code (wavy pills, pebbles, contour lines, the corner dial), checked by golden tests in light, dark and large text.',
-    ],
-    stack: ['Flutter', 'Dart', 'BLoC', 'drift (SQLite)', 'ML Kit', 'Laravel'],
+    stack: ['Flutter', 'Dart', 'drift (SQLite)', 'Laravel REST API', 'Kotlin widgets', 'Figma'],
+    companion: true,
+    /* Rendered from the app in dark mode with sample data (a throwaway shot test in Meranzlan/fitxp, not committed). */
     screens: [
-      { src: '/images/fitxp/today.webp', alt: 'FitXP Today: kcal left in a wavy ring, water, weight and steps trackers, and meal plates', device: 'phone' },
-      { src: '/images/fitxp/log.webp', alt: 'FitXP log sheet: snap a meal or search Malaysian dishes like nasi lemak', device: 'phone' },
-      { src: '/images/fitxp/progress.webp', alt: 'FitXP Progress: this week’s boss, the level, cards and trophies', device: 'phone' },
-      { src: '/images/fitxp/dial.webp', alt: 'FitXP corner dial open, with Water, Exercise, Food, Looks and Progress', device: 'phone' },
+      { src: '/images/fitxp/today.webp', alt: 'FitXP Today in dark mode: 820 kcal left, water, weight and steps, breakfast on its plate and Koma in the corner' },
+      { src: '/images/fitxp/dial.webp', alt: 'FitXP corner dial open over Today, with Water, Exercise, Tiles, Looks and Progress' },
+      { src: '/images/fitxp/water.webp', alt: 'FitXP Water: Koma filled with 1.5 litres and the Hydrate star earned' },
+      { src: '/images/fitxp/exercise.webp', alt: 'FitXP Exercise: 7,420 steps up the mountain to the Move star, and today’s workouts' },
+      { src: '/images/fitxp/log-breakfast.webp', alt: 'FitXP log sheet: “What did you have for breakfast?”, snap it or search Malaysian dishes' },
+      { src: '/images/fitxp/journal.webp', alt: 'FitXP Today’s page: a notebook page with a meal receipt, a sticky note, the day tracker and a level stamp' },
+      { src: '/images/fitxp/weight.webp', alt: 'FitXP Weight: 72.4 kg, down 1.7 kg this month, with Koma waiting at the 70 kg goal' },
     ],
-    banner: {
-      src: '/images/fitxp/cards.webp',
-      alt: 'A sheet of FitXP’s collectible cards: pebble-shaped scenes for each world, with gold trophy cards',
-    },
-    size: 'feature',
   },
   {
-    id: 'ikko',
-    code: 'IKO',
-    tint: 'looks',
-    name: 'Ikko',
-    summary:
-      'A trip planner for a Kansai trip: a Vue and Laravel web app, plus a Flutter Android app on the same API.',
-    facts: [
-      { label: 'Type', value: 'Personal project' },
-      { label: 'Since', value: 'September 2026' },
-      { label: 'Platforms', value: 'Web, Android' },
-      { label: 'Status', value: 'In service' },
+    id: 'i-kredikom',
+    brand: 'ikredikom',
+    stamp: 'In service · 4 languages',
+    note: 'The calculator follows the legal caps in the Acts.',
+    name: 'i-Kredikom 2.0',
+    tagline: 'Find and check licensed moneylenders and pawnbrokers',
+    meta: ['KPKT', 'Zen Computer Systems', '2025 – Present'],
+    points: [
+      'Rebuilt from the ground up in Flutter and Riverpod for the Ministry of Housing and Local Government (KPKT).',
+      'MyDigital ID 2.0 national digital-identity sign-in over OpenID Connect with PKCE.',
+      'A nationwide map of licensed lenders on OpenStreetMap, with marker clustering.',
+      'Statutory calculators for the interest and fee caps in the Moneylenders Act 1951 and Pawnbrokers Act 1972.',
+      'A two-tier memory and disk cache for fewer network calls and offline reading.',
+      'Four languages (Malay, English, Chinese, Tamil) with instant switching, and FCM push notifications that deep-link to the right screen.',
     ],
-    highlights: [
-      'Optimistic Pinia stores that keep the web app working when the API is out of reach.',
-      'A Laravel REST API with Sanctum tokens: anyone can read, only signed-in users can write.',
-      'Friends send souvenir requests through a shared link.',
-      'GitHub Actions deploys it to the same hosting as this site.',
-    ],
-    stack: ['Vue 3', 'TypeScript', 'Laravel', 'Flutter', 'Leaflet'],
+    stack: ['Flutter', 'Dart', 'Riverpod', 'OIDC + PKCE', 'OpenStreetMap', 'FCM'],
     screens: [
-      { src: '', alt: 'Ikko itinerary on the web', device: 'browser' },
-      { src: '', alt: 'Ikko on Android', device: 'phone' },
+      { src: '/images/i-kredikom/home.webp', alt: 'i-Kredikom 2.0 home: announcements and services' },
+      { src: '/images/i-kredikom/map.webp', alt: 'i-Kredikom 2.0 map of licensed lenders, with a lender’s details open' },
+      { src: '/images/i-kredikom/calculator.webp', alt: 'i-Kredikom 2.0 loan calculator showing total interest and monthly instalment' },
+      { src: '/images/i-kredikom/licence.webp', alt: 'i-Kredikom 2.0 licence check result for a moneylender' },
     ],
-    link: { label: 'Visit ikko.space', href: 'https://ikko.space' },
-    size: 'compact',
-  },
-  {
-    id: 'recipease',
-    code: 'RE',
-    tint: 'move',
-    name: 'Recipease',
-    summary:
-      'A cooking assistant that recognises ingredients in a photo with an on-device CNN, then suggests recipes.',
-    facts: [
-      { label: 'Type', value: 'Final-year project, UiTM' },
-      { label: 'Built', value: '2023 to 2025' },
-    ],
-    highlights: [
-      'A TensorFlow Lite CNN that runs on the phone, no server needed.',
-      'Recipe suggestions from the Spoonacular API, based on what it recognised.',
-    ],
-    stack: ['Flutter', 'TensorFlow Lite', 'Spoonacular API'],
-    screens: [{ src: '', alt: 'Recipease ingredient scan', device: 'phone' }],
-    size: 'compact',
   },
 ]
 
-/** Newest first. The line runs down the page from where you are now. */
-export const journey: Stop[] = [
+/** Plain entries: no visuals, no highlight. */
+export const otherWork: OtherWork[] = [
   {
-    place: 'Zen Computer Systems',
+    name: 'Recipease',
+    context: 'Final-year project, UiTM',
+    when: '2023 – 2025',
+    note: 'A cooking assistant that recognises ingredients in a photo with an on-device CNN (TensorFlow Lite), then suggests recipes from the Spoonacular API.',
+  },
+  {
+    name: 'Ikko',
+    context: 'Personal project',
+    when: '2026',
+    note: 'A trip planner: a Vue and Laravel web app at ikko.space, with a Flutter Android app on the same API.',
+  },
+]
+
+/** Newest first. */
+export const experience: Role[] = [
+  {
+    company: 'Zen Computer Systems Sdn Bhd',
+    where: 'Cyberjaya, Selangor',
+    when: 'Apr 2025 – Present',
     title: 'Solution Developer, Mobile',
-    where: 'Cyberjaya',
-    when: 'Apr 2025 – now',
-    notes: ['Government apps for JAKIM and KPKT, from rebuild to release.'],
-    current: true,
-  },
-  {
-    place: 'Elix Solution',
-    title: 'Mobile Developer Intern',
-    where: 'Seri Kembangan',
-    when: 'Sep 2024 – Feb 2025',
-    notes: [
-      'Lokel Superapp: one Flutter app for several local-council portals, with parking, fines, assessment tax and monthly passes.',
-      'Session persistence with background token refresh, deep links and receipts; skeleton loading and caching for weak networks.',
+    work: [
+      {
+        name: 'JAKIM Touch',
+        client: 'JAKIM',
+        points: [
+          'Rebuilt the official app in Flutter for iOS, Android and Huawei, with native widgets, background sync and runtime security.',
+        ],
+      },
+      {
+        name: 'i-Kredikom 2.0',
+        client: 'KPKT',
+        points: ['Rebuilt the app in Flutter and Riverpod, with MyDigital ID 2.0 sign-in, a lender map and statutory calculators.'],
+      },
     ],
+    stack: ['Flutter', 'GetX', 'Riverpod', 'SwiftUI', 'Kotlin'],
   },
   {
-    place: 'Universiti Teknologi MARA',
-    title: 'BSc (Hons) Computer Science, Mobile Computing',
+    company: 'Elix Solution Sdn Bhd',
+    where: 'Seri Kembangan, Selangor',
+    when: 'Sep 2024 – Feb 2025',
+    title: 'Mobile Developer Intern',
+    work: [
+      {
+        name: 'Lokel Superapp',
+        points: [
+          'Integrated several regional local-council portals into a single Flutter client.',
+          'Built ParkN’Pay, compound and fine payments, quarterly assessment tax and recurring monthly passes.',
+          'Session persistence with background token refresh, secure storage, deep links and transaction receipts.',
+          'Steadier on weak networks: empty states, skeleton loading, central error handling and local caching.',
+        ],
+      },
+    ],
+    stack: ['Flutter', 'Dart', 'REST APIs'],
+  },
+]
+
+export const education: Study[] = [
+  {
+    school: 'Universiti Teknologi MARA (UiTM)',
     where: 'Kuala Terengganu',
     when: 'Graduated Feb 2025',
-    notes: ['GPA 3.44. Dean’s List Award.'],
+    title: 'Bachelor of Computer Science (Hons.) in Mobile Computing',
+    note: 'GPA 3.44 / 4.00 · Dean’s List Award',
   },
   {
-    place: 'Kolej Matrikulasi Negeri Sembilan',
-    title: 'Science, Computer Science module',
+    school: 'Matriculation College Negeri Sembilan',
     where: 'Kuala Pilah',
     when: 'Aug 2020 – May 2021',
-    notes: ['GPA 3.33.'],
+    title: 'Science Matriculation, Module 2 (Computer Science)',
+    note: 'GPA 3.33 / 4.00',
   },
 ]
 
-export const skillLines: SkillLine[] = [
+export const skills: SkillGroup[] = [
   { name: 'Mobile', items: ['Flutter', 'Dart', 'Kotlin', 'Java', 'SwiftUI', 'Android Studio', 'Gradle'] },
-  { name: 'Native edges', items: ['Home-screen widgets', 'WorkManager', 'Huawei HMS', 'Google GMS'] },
   { name: 'State', items: ['GetX', 'Riverpod', 'BLoC', 'Provider'] },
+  { name: 'Web', items: ['Vue.js', 'Laravel', 'REST API design'] },
   {
-    name: 'Security and identity',
-    items: ['OIDC + PKCE', 'MyDigital ID 2.0', 'freeRASP', 'OWASP Mobile Top 10'],
+    name: 'Back end & data',
+    items: ['REST integration', '.NET (basic)', 'SQL', 'SQLite', 'drift', 'Hive', 'Firebase Cloud Messaging', 'Postman', 'Swagger UI'],
   },
-  {
-    name: 'Web and back end',
-    items: ['Vue', 'Laravel', 'REST API design', 'SQL', 'SQLite', 'drift', 'Hive', 'Firebase Cloud Messaging', '.NET (basic)'],
-  },
+  { name: 'Security & identity', items: ['OIDC / PKCE', 'MyDigital ID 2.0', 'freeRASP', 'OWASP Mobile Top 10'] },
   { name: 'Machine learning', items: ['TensorFlow Lite', 'CNN', 'OCR', 'Object detection'] },
-  {
-    name: 'Tools',
-    items: ['Git', 'GitHub Enterprise', 'Figma', 'Miro', 'Postman', 'Swagger UI', 'Copilot Studio', 'CI/CD'],
-  },
+  { name: 'Tools', items: ['Git', 'GitHub Enterprise', 'Figma', 'Miro', 'Copilot Studio', 'CI/CD'] },
 ]
-
-export const photos: Photo[] = [
-  { src: '', alt: '', caption: 'JAKIM Touch launch', shape: 'landscape' },
-  { src: '', alt: '', caption: 'Graduation, UiTM', shape: 'portrait' },
-  { src: '', alt: '', caption: 'i-Kredikom 2.0 launch', shape: 'landscape' },
-]
-
-export interface Achievement {
-  title: string
-  from: string
-}
-
-export const achievements: Achievement[] = [{ title: 'Dean’s List Award', from: 'Universiti Teknologi MARA' }]

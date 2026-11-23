@@ -3,22 +3,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Imran Azlan · Mobile developer, Flutter</title>
+    <title>Imran Azlan · Mobile Developer</title>
     <meta
       name="description"
-      content="Imran Azlan builds Flutter apps for government clients in Malaysia, down to the native edges: home-screen widgets, Huawei support, background sync and MyDigital ID login."
+      content="Imran Azlan builds Flutter apps for national government clients in Malaysia, end to end: JAKIM Touch, i-Kredikom 2.0 and FitXP."
     />
-    <meta name="theme-color" content="#18203a" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#FAF8F5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href="https://imran.ikko.space/" />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://imran.ikko.space/" />
-    <meta property="og:title" content="Imran Azlan · Mobile developer, Flutter" />
-    <meta
-      property="og:description"
-      content="Government-scale Flutter apps, down to the native edges. JAKIM Touch, i-Kredikom 2.0, FitXP, Ikko and more."
-    />
+    <meta property="og:title" content="Imran Azlan · Mobile Developer" />
+    <meta property="og:description" content="Flutter apps for government clients, down to the native edges. JAKIM Touch, i-Kredikom 2.0 and FitXP." />
+    <meta property="og:image" content="https://imran.ikko.space/images/portrait.webp" />
+    <!-- Applies a saved theme before the page paints, so a dark-mode visitor never sees a light flash. -->
+    <script>
+      try {
+        var t = localStorage.getItem('theme')
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="app"></div>
