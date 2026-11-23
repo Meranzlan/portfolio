@@ -129,6 +129,8 @@ export const projects: Project[] = [
       { src: '/images/fitxp/water.webp', alt: 'FitXP Water: Koma filled with 1.5 litres and the Hydrate star earned' },
       { src: '/images/fitxp/exercise.webp', alt: 'FitXP Exercise: 7,420 steps up the mountain to the Move star, and today’s workouts' },
       { src: '/images/fitxp/log-breakfast.webp', alt: 'FitXP log sheet: “What did you have for breakfast?”, snap it or search Malaysian dishes' },
+      { src: '/images/fitxp/journal.webp', alt: 'FitXP Today’s page: a notebook page with a meal receipt, a sticky note, the day tracker and a level stamp' },
+      { src: '/images/fitxp/weight.webp', alt: 'FitXP Weight: 72.4 kg, down 1.7 kg this month, with Koma waiting at the 70 kg goal' },
     ],
   },
   {

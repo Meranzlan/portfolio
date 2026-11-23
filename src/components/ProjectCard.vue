@@ -63,8 +63,8 @@ const flip = computed(() => props.index % 2 === 1)
   --brand: var(--fitxp);
   --brand-hi: var(--fitxp-hi);
   --brand-stamp: var(--fitxp-stamp);
-  /* The app's dark screens vanish on navy card, so FitXP's card is Koma's light blue. */
-  --brand-card: var(--fitxp-hi);
+  /* The app's dark screens vanish on navy card, so FitXP's card is Koma's Water blue. */
+  --brand-card: var(--fitxp-water);
 }
 .brand-ikredikom {
   --brand: var(--ikredikom);
@@ -300,13 +300,18 @@ const flip = computed(() => props.index % 2 === 1)
     padding: 24px 16px 26px;
     gap: 16px;
   }
+  /* 116px phones sit two to a row, so four screens make a neat 2 × 2. */
   .phone.small {
-    width: 92px;
+    width: 116px;
+  }
+  /* On a phone Koma stands under the 2 × 2, so the row leaves room below. */
+  .entry:has(.companion) .more {
+    padding-bottom: 64px;
   }
   .companion {
-    left: 12px;
-    bottom: 20px;
-    width: 48px;
+    left: 16px;
+    bottom: 14px;
+    width: 44px;
     height: auto;
   }
 }
