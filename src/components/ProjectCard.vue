@@ -80,20 +80,6 @@ const flip = computed(() => props.index % 2 === 1)
   border: 1px solid var(--hairline);
   border-radius: 6px;
   overflow: hidden;
-  isolation: isolate;
-}
-
-/* FitXP's entry carries the app's topographic contour lines, faint, behind everything. A mask lets the lines
-   take a token colour, which an SVG file can't read. */
-.brand-fitxp::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: var(--fitxp-hi);
-  opacity: var(--contour-opacity);
-  mask: url('../assets/contour.svg') center / cover no-repeat;
-  pointer-events: none;
 }
 
 /* The ticket stub: the app's colour, with a perforated bottom edge punched out of the paper. */
