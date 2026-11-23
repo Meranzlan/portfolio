@@ -18,22 +18,14 @@ defineProps<{ project: Project }>()
     <ul class="points">
       <li v-for="p in project.points" :key="p">{{ p }}</li>
     </ul>
-    <ul class="pills" aria-label="Built with">
-      <li v-for="s in project.stack" :key="s" class="pill">{{ s }}</li>
-    </ul>
+    <p class="mono stack"><span class="label">Built with</span> {{ project.stack.join(' · ') }}</p>
 
     <!-- Screens scroll sideways when they do not fit; a project without screens simply ends here. -->
     <div v-if="project.screens.length" class="screens" tabindex="0" :aria-label="`${project.name} screenshots`">
-      <img
-        v-for="s in project.screens"
-        :key="s.src"
-        :src="s.src"
-        :alt="s.alt"
-        width="540"
-        height="1212"
-        loading="lazy"
-        decoding="async"
-      />
+      <!-- Each screenshot sits in a simple drawn phone: a dark body, a thin bezel and a side button. -->
+      <figure v-for="s in project.screens" :key="s.src" class="phone">
+        <img :src="s.src" :alt="s.alt" width="540" height="1212" loading="lazy" decoding="async" />
+      </figure>
     </div>
   </article>
 </template>
@@ -68,20 +60,19 @@ defineProps<{ project: Project }>()
   margin-top: 4px;
 }
 .status {
-  display: inline-block;
-  max-width: 100%;
-  margin-top: 12px;
-  padding: 4px 12px;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-pill);
-  background: var(--accent-tint);
+  margin-top: 10px;
   color: var(--accent);
+}
+.status::before {
+  content: '● ';
+  font-size: 9px;
+  vertical-align: 2px;
 }
 .summary {
   margin-top: 18px;
 }
 .points {
-  margin: 16px 0 20px;
+  margin: 16px 0 18px;
   padding-left: 18px;
 }
 .points li + li {
@@ -90,35 +81,57 @@ defineProps<{ project: Project }>()
 .points li::marker {
   color: var(--ink-2);
 }
+.stack .label {
+  color: var(--ink);
+}
 .screens {
   display: flex;
-  gap: 12px;
-  margin: 24px -28px -28px;
-  padding: 0 28px 28px;
+  gap: 16px;
+  margin: 28px -28px -28px;
+  padding: 4px 28px 32px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
 }
-.screens img {
+.phone {
   flex: 0 0 auto;
-  width: 148px;
-  height: auto;
-  border: 1px solid var(--hairline);
-  border-radius: var(--radius-control);
+  width: 168px;
+  margin: 0;
+  padding: 5px;
+  background: var(--device);
+  border-radius: 26px;
+  position: relative;
   scroll-snap-align: start;
 }
+/* The side button, drawn as a thin bar on the phone's right edge. */
+.phone::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 22%;
+  width: 2px;
+  height: 11%;
+  border-radius: 0 2px 2px 0;
+  background: var(--device);
+}
+.phone img {
+  width: 100%;
+  height: auto;
+  border-radius: 21px;
+}
 
-/* Wide screens: all six slots in one row, so every project's screens share a size. */
+/* Wide screens: four phones to a row, centred, so every project's phones share a size. */
 @media (min-width: 700px) {
   .screens {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    flex-wrap: wrap;
+    justify-content: center;
     overflow: visible;
-    margin: 24px 0 0;
+    margin: 28px 0 0;
     padding: 0;
+    gap: 24px 20px;
   }
-  .screens img {
-    width: 100%;
+  .phone {
+    width: calc((100% - 60px) / 4);
   }
 }
 
@@ -130,11 +143,15 @@ defineProps<{ project: Project }>()
     font-size: 30px;
   }
   .screens {
-    margin: 20px -20px -20px;
-    padding: 0 20px 20px;
+    margin: 24px -20px -20px;
+    padding: 4px 20px 28px;
   }
-  .screens img {
-    width: 136px;
+  .phone {
+    width: 150px;
+    border-radius: 23px;
+  }
+  .phone img {
+    border-radius: 18px;
   }
 }
 </style>

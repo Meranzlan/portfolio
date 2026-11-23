@@ -22,13 +22,16 @@ corporate SaaS clutter.
   unless the visitor picked a theme with the header toggle (`data-theme` on `<html>`, saved in `localStorage`;
   `index.html` applies it before paint).
 - **Elevation is a hairline.** 1px solid `--hairline` separates sections and frames cards. Never a box-shadow.
-- **Radii:** 14px project cards and the portrait, 10px buttons and screenshots, 999px pills.
+- **Radii:** 14px project cards and the portrait, 10px buttons. No pills: stacks and skills are plain text
+  (owner, 2026-11-23: pills looked too generated).
 - **Cards** are `--surface` (sand) on the `--canvas` page; hover deepens to `--surface-press` over 150ms. Text links
   are ink with a terracotta underline.
-- **Metadata** (`.mono`) is uppercase JetBrains Mono with 0.06em tracking. Tags are mono pills on canvas, taupe text.
+- **Metadata** (`.mono`) is uppercase JetBrains Mono with 0.06em tracking. A project's stack is one mono line.
+- **Screenshots** sit in a drawn phone (`--device` body, thin bezel, side button), four to a row on wide screens.
+- **Portrait** is the full photo, uncropped.
 - **Section titles** are italic Newsreader with a hairline running to the edge, like the notebook's month divider.
 - Reference: Imran's Stitch mobile mock "Tactile Stationery Minimalist" (2026-11-23), adapted to a web page.
-- **Accent** (`--accent`) is for link underlines, focus rings and the one status tag (`--accent-tint` fill).
+- **Accent** (`--accent`) is for link underlines, focus rings and the one status line.
 - **Fonts** are self-hosted in `src/assets/fonts/` with their OFL licences.
 
 ## Layout
@@ -38,8 +41,8 @@ Centred 820px container, 24px gutters.
 1. **Header:** mono site name, section links, theme toggle. Links hide under 640px; the toggle stays.
 2. **Intro:** portrait (30% column) beside the serif name, mono role and place, the pitch and three text links.
 3. **Selected work:** three full cards (JAKIM Touch, FitXP, i-Kredikom 2.0): mono meta, serif name, tagline,
-   bullets, stack pills, then screenshots. On wide screens screenshots sit in a six-slot grid so every project's
+   bullets, a mono stack line, then screenshots in phone frames. On wide screens screenshots sit in a six-slot grid so every project's
    phones share a size; on phones they scroll sideways. A project without screenshots ends after its pills.
 4. **Experience, Other work, Areas of expertise, Education:** the asymmetric row, 30% mono (dates, company, place)
-   and 70% content (role, bullets, pills). Rows stack under 640px.
+   and 70% content (role, bullets, stack line). Rows stack under 640px.
 5. **Get in touch:** email, LinkedIn and GitHub as text links. No phone number.

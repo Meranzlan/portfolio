@@ -59,9 +59,7 @@ const year = new Date().getFullYear()
                 <li v-for="pt in w.points" :key="pt">{{ pt }}</li>
               </ul>
             </div>
-            <ul class="pills" aria-label="Stack">
-              <li v-for="s in r.stack" :key="s" class="pill">{{ s }}</li>
-            </ul>
+            <p class="mono">{{ r.stack.join(' · ') }}</p>
           </div>
         </div>
       </section>
@@ -84,9 +82,7 @@ const year = new Date().getFullYear()
         <h2 class="heading">Areas of expertise</h2>
         <div v-for="g in skills" :key="g.name" class="row tight">
           <p class="mono side">{{ g.name }}</p>
-          <ul class="pills main">
-            <li v-for="s in g.items" :key="s" class="pill">{{ s }}</li>
-          </ul>
+          <p class="main">{{ g.items.join(', ') }}</p>
         </div>
       </section>
 
@@ -162,10 +158,7 @@ const year = new Date().getFullYear()
 }
 .portrait {
   width: 100%;
-  max-width: 200px;
   height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
   border: 1px solid var(--hairline);
   border-radius: var(--radius-card);
 }
@@ -218,7 +211,7 @@ const year = new Date().getFullYear()
 }
 .row.tight {
   padding: 14px 0;
-  align-items: center;
+  align-items: baseline;
 }
 .side p + p {
   margin-top: 2px;
@@ -271,7 +264,7 @@ const year = new Date().getFullYear()
     padding: 40px 0 40px;
   }
   .portrait {
-    max-width: 112px;
+    max-width: 100%;
   }
   .row {
     grid-template-columns: 1fr;

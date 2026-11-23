@@ -12,6 +12,7 @@
   --accent: #c86d51;
   --accent-tint: #f4e6e1;
   --hairline: #e5e0d8;
+  --device: #1e1e1c;
 
   --serif: 'Newsreader', Georgia, serif;
   --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -24,7 +25,6 @@
 
   --radius-card: 14px;
   --radius-control: 10px;
-  --radius-pill: 999px;
 
   --container: 820px;
   --gutter: 24px;
@@ -42,6 +42,7 @@
   --accent: #d97d62;
   --accent-tint: rgba(217, 125, 98, 0.14);
   --hairline: #2a2a27;
+  --device: #33332f;
   color-scheme: dark;
 }
 
@@ -55,6 +56,7 @@
     --accent: #d97d62;
     --accent-tint: rgba(217, 125, 98, 0.14);
     --hairline: #2a2a27;
+  --device: #33332f;
     color-scheme: dark;
   }
 }
