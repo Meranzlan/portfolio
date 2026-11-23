@@ -42,7 +42,7 @@ Centred 820px container, 24px gutters.
 2. **Intro:** portrait (30% column) beside the serif name, mono role and place, the pitch and three text links.
 3. **Selected work:** three full cards (JAKIM Touch, FitXP, i-Kredikom 2.0): mono meta, serif name, tagline,
    bullets, a mono stack line, then screenshots in phone frames. On wide screens screenshots sit in a six-slot grid so every project's
-   phones share a size; on phones they scroll sideways. A project without screenshots ends after its pills.
+   phones share a size; on phones they scroll sideways. A project without screenshots ends after its stack line.
 4. **Experience, Other work, Areas of expertise, Education:** the asymmetric row, 30% mono (dates, company, place)
    and 70% content (role, bullets, stack line). Rows stack under 640px.
 5. **Get in touch:** email, LinkedIn and GitHub as text links. No phone number.
