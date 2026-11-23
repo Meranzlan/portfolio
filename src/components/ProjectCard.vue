@@ -23,7 +23,13 @@ defineProps<{ project: Project }>()
     <p class="mono stack"><span class="label">Built with</span> {{ project.stack.join(' · ') }}</p>
 
     <!-- Screens scroll sideways when they do not fit; a project without screens simply ends here. -->
-    <div v-if="project.screens.length" class="screens" tabindex="0" :aria-label="`${project.name} screenshots`">
+    <div
+      v-if="project.screens.length"
+      class="screens"
+      tabindex="0"
+      :aria-label="`${project.name} screenshots`"
+      :style="{ '--per-row': project.screens.length <= 5 ? project.screens.length : Math.ceil(project.screens.length / 2) }"
+    >
       <!-- Each screenshot sits in a simple drawn phone: a dark body, a thin bezel and a side button. -->
       <figure v-for="s in project.screens" :key="s.src" class="phone">
         <img :src="s.src" :alt="s.alt" width="540" height="1212" loading="lazy" decoding="async" />
@@ -132,7 +138,7 @@ defineProps<{ project: Project }>()
   border-radius: 21px;
 }
 
-/* Wide screens: four phones to a row, centred, so every project's phones share a size. */
+/* Wide screens: one row of up to five phones; six or more split into two even rows. */
 @media (min-width: 700px) {
   .screens {
     flex-wrap: wrap;
@@ -143,7 +149,8 @@ defineProps<{ project: Project }>()
     gap: 24px 20px;
   }
   .phone {
-    width: calc((100% - 60px) / 4);
+    width: calc((100% - (var(--per-row) - 1) * 20px) / var(--per-row));
+    max-width: 200px;
   }
 }
 

@@ -3,7 +3,8 @@
   =====================================================================
   Built like the app's painter (lib/shared/components/companion.dart, _koma): a 4 × 3 block of matcha tiles, the
   middle pair of row two merged into one eye tile with two white eyes, and two deeper-matcha feet. It bobs and blinks
-  now and then, unless the visitor asks for reduced motion. Colours are the app's own, not the site's tokens.
+  now and then, unless the visitor asks for reduced motion. Blue, as Koma is in the app's dark theme (Imran, 2026-11-23);
+  the colours are the app's, not the site's tokens.
 -->
 <script setup lang="ts">
 withDefaults(defineProps<{ size?: number }>(), { size: 72 })
@@ -39,13 +40,13 @@ const body = [0, 1, 2].flatMap((row) =>
   overflow: visible;
 }
 .body rect {
-  fill: #8dc24b;
+  fill: #a9c6e0;
 }
 .body .eyes rect {
-  fill: #fff;
+  fill: #18203a;
 }
 .foot {
-  fill: #4a7a1f;
+  fill: #7f9fc0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

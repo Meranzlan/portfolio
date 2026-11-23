@@ -109,12 +109,13 @@ export const projects: Project[] = [
     ],
     stack: ['Flutter', 'Dart', 'drift (SQLite)', 'Laravel REST API', 'Kotlin widgets', 'Figma'],
     companion: true,
-    /* The app's committed golden test images (test/goldens/screens/*_usual_light.png in Meranzlan/fitxp). */
+    /* Rendered from the app in dark mode with sample data (a throwaway shot test in Meranzlan/fitxp, not committed). */
     screens: [
-      { src: '/images/fitxp/today.webp', alt: 'FitXP Today: calories left in a ring, water, weight and steps, and meal plates' },
-      { src: '/images/fitxp/log-sheet.webp', alt: 'FitXP log sheet: snap a meal or search Malaysian dishes like nasi lemak' },
-      { src: '/images/fitxp/notebook.webp', alt: 'FitXP journal: today’s page in a paper notebook with an elastic band and a clip' },
-      { src: '/images/fitxp/progress.webp', alt: 'FitXP Progress: this week’s boss, the level, cards, trophies and today’s stars' },
+      { src: '/images/fitxp/today.webp', alt: 'FitXP Today in dark mode: 820 kcal left, water, weight and steps, breakfast on its plate and Koma in the corner' },
+      { src: '/images/fitxp/dial.webp', alt: 'FitXP corner dial open over Today, with Water, Exercise, Tiles, Looks and Progress' },
+      { src: '/images/fitxp/water.webp', alt: 'FitXP Water: Koma filled with 1.5 litres and the Hydrate star earned' },
+      { src: '/images/fitxp/exercise.webp', alt: 'FitXP Exercise: 7,420 steps up the mountain to the Move star, and today’s workouts' },
+      { src: '/images/fitxp/log-breakfast.webp', alt: 'FitXP log sheet: “What did you have for breakfast?”, snap it or search Malaysian dishes' },
     ],
   },
   {
