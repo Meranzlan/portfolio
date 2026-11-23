@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { Project } from '../content'
+import KomaCompanion from './KomaCompanion.vue'
 
 // defineProps declares what the parent passes in, like a Flutter widget's final fields.
 defineProps<{ project: Project }>()
 </script>
 
 <template>
-  <article :id="project.id" class="card">
+  <article :id="project.id" class="card" :class="{ 'has-companion': project.companion }">
+    <KomaCompanion v-if="project.companion" class="companion" />
     <p class="mono meta">
       <span v-for="(m, i) in project.meta" :key="m"><span v-if="i > 0" aria-hidden="true">· </span>{{ m }}</span>
     </p>
@@ -32,6 +34,7 @@ defineProps<{ project: Project }>()
 
 <style scoped>
 .card {
+  position: relative;
   /* A grid item grows to fit its widest child unless told otherwise; the screen strip must scroll instead. */
   min-width: 0;
   border: 1px solid var(--hairline);
@@ -42,6 +45,15 @@ defineProps<{ project: Project }>()
 }
 .card:hover {
   background: var(--surface-press);
+}
+.companion {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+}
+.has-companion .meta,
+.has-companion .tagline {
+  padding-right: 96px;
 }
 .meta {
   display: flex;
@@ -141,6 +153,16 @@ defineProps<{ project: Project }>()
   }
   .name {
     font-size: 30px;
+  }
+  .has-companion .meta,
+  .has-companion .tagline {
+    padding-right: 64px;
+  }
+  .companion {
+    top: 18px;
+    right: 18px;
+    width: 52px;
+    height: auto;
   }
   .screens {
     margin: 24px -20px -20px;

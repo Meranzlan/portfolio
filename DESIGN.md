@@ -29,6 +29,8 @@ corporate SaaS clutter.
 - **Metadata** (`.mono`) is uppercase JetBrains Mono with 0.06em tracking. A project's stack is one mono line.
 - **Screenshots** sit in a drawn phone (`--device` body, thin bezel, side button), four to a row on wide screens.
 - **Portrait** is the full photo, uncropped.
+- **Koma** (FitXP's companion, first stage, in the app's own matcha) sits in the FitXP card's top-right corner.
+  FitXP's screens are the app's light golden images (`test/goldens/screens/*_usual_light.png`).
 - **Section titles** are italic Newsreader with a hairline running to the edge, like the notebook's month divider.
 - Reference: Imran's Stitch mobile mock "Tactile Stationery Minimalist" (2026-11-23), adapted to a web page.
 - **Accent** (`--accent`) is for link underlines, focus rings and the one status line.

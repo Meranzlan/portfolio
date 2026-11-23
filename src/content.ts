@@ -23,6 +23,8 @@ export interface Project {
   /** Phone screenshots. A project with none shows a text-only card, never a placeholder. */
   screens: Screen[]
   status?: string
+  /** Shows the app's companion, Koma, in the card's corner. */
+  companion?: boolean
 }
 
 export interface Role {
@@ -106,7 +108,14 @@ export const projects: Project[] = [
       'Illustrations and companion characters drawn in code with custom painters, covered by golden and unit tests.',
     ],
     stack: ['Flutter', 'Dart', 'drift (SQLite)', 'Laravel REST API', 'Kotlin widgets', 'Figma'],
-    screens: [],
+    companion: true,
+    /* The app's committed golden test images (test/goldens/screens/*_usual_light.png in Meranzlan/fitxp). */
+    screens: [
+      { src: '/images/fitxp/today.webp', alt: 'FitXP Today: calories left in a ring, water, weight and steps, and meal plates' },
+      { src: '/images/fitxp/log-sheet.webp', alt: 'FitXP log sheet: snap a meal or search Malaysian dishes like nasi lemak' },
+      { src: '/images/fitxp/notebook.webp', alt: 'FitXP journal: today’s page in a paper notebook with an elastic band and a clip' },
+      { src: '/images/fitxp/progress.webp', alt: 'FitXP Progress: this week’s boss, the level, cards, trophies and today’s stars' },
+    ],
   },
   {
     id: 'i-kredikom',
