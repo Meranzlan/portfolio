@@ -43,24 +43,26 @@ stack (Ikko: Vue + Laravel web and a Flutter Android client on his own domain).
 
 - Sections the first version needs: who he is (with his photo), featured projects, work experience, skills,
   education and achievements, contact.
-- Featured projects, first version: JAKIM Touch (JAKIM), i-Kredikom 2.0 (KPKT), Ikko, FitXP, Recipease.
+- Featured projects (owner, 2026-11-23): JAKIM Touch (JAKIM), FitXP, i-Kredikom 2.0 (KPKT), as full cards. Everything
+  else (Recipease, Ikko) is a plain text entry with no visuals and no highlight.
 - Excluded until launched: MyTax Stamp Authenticity Check (LHDN, "STSDS"). Lokel Superapp (internship) is not
   featured; it stays in the experience timeline only.
-- Contact: email, LinkedIn, GitHub, phone / WhatsApp, and a downloadable CV PDF. All were chosen by the owner.
-- Photos (his face, project launch photos, achievement photos) are supplied later by the owner. The layout must look
-  finished with placeholders and must accept portrait and landscape photos of any quality.
+- Contact: email, LinkedIn, GitHub. No phone number on the public site. A CV download comes back only when the
+  owner supplies a final PDF.
+- A project without screenshots gets a clean text-only card, never a placeholder.
 - No backend, no analytics, no tracking.
 
 ## Brand Commitments
 
-- FitXP's dark look (owner, 2026-11-11): the site is a showcase of the same design language as his app. Pale blue
-  is the one highlight colour; the app's place colours tint the sections. Dark only.
+- Editorial Tactile Minimalism (owner, 2026-11-23, replaces the FitXP dark look): warm paper, hairline ink borders,
+  an editorial serif, monospace metadata. Light first, dark optional. See `DESIGN.md`.
 - The owner's brief: safe and clear first, but not generic; playful and interesting; attention-catching without
   overshadowing the content.
 
 ## Evidence on Hand
 
-- Resume (October 2026): `public/cv/Imran-Azlan-Resume.pdf`. Source of all factual copy.
+- Resume (November 2026, supplied in chat): source of all factual copy. Its FitXP entry was outdated; the site uses
+  the corrected one in `src/content.ts`.
 - Work: Zen Computer Systems Sdn Bhd, Solution Developer (Mobile), April 2025 to present: JAKIM Touch, i-Kredikom
   2.0, MyTax. Elix Solution Sdn Bhd, Mobile Developer Intern, September 2024 to February 2025: Lokel Superapp.
 - Education: UiTM, Bachelor of Computer Science (Hons) in Mobile Computing, GPA 3.44, Dean's List, graduated

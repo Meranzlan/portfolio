@@ -1,89 +1,57 @@
 /*
- * tokens.css — FitXP's dark theme, as the portfolio's palette, type and spacing
- * ==============================================================================
- * The colours are FitXP's own dark-mode roles (lib/shared/design/tokens.dart in the app): a night-navy page with
- * faint contour lines, slightly lighter navy surfaces, warm off-white ink, and one pale blue for the one call to
- * action. Each section borrows the colour of one of the app's places, the way the corner dial colours them.
- * The site is dark only, like the app's dark theme it is modelled on.
+ * Editorial Tactile Minimalism (owner, 2026-11-23): warm paper, hairline ink borders, an editorial serif and
+ * monospace metadata. Light is primary; dark follows the system unless the visitor picks one with the toggle,
+ * which sets data-theme on <html>.
  */
-
 :root {
-  color-scheme: dark;
+  --canvas: #faf8f5;
+  --surface: #f2efe9;
+  --ink: #1e1e1c;
+  --ink-2: #7a756d;
+  --accent: #c86d51;
+  --accent-tint: #f4e6e1;
+  --hairline: #e5e0d8;
 
-  /* Surfaces */
-  --bg: #18203a; /* page */
-  --surface: #212b4a; /* cards, pills, sheets */
-  --board: #1c2542; /* the tray screenshots sit on */
-  --board-dot: #2e3a5e;
-  --raised: #2a365d; /* a surface on a surface */
-  --line: #34416a; /* outlines and dividers */
-  --contour: #2a355a;
-  --track: #2e3a5e; /* the unfilled part of a ring or trail */
+  --serif: 'Instrument Serif', 'Newsreader', Georgia, serif;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  /* Ink */
-  --ink: #f2f0ea;
-  --muted: #a6b3c8;
+  --text: 16.5px;
+  --meta: 12.5px;
+  --leading: 1.6;
+  --tracking-tight: -0.02em;
 
-  /* The one call to action, selection and progress */
-  --accent: #a9c6e0;
-  --accent-deep: #c4d8eb;
-  --on-accent: #18203a;
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --radius-pill: 999px;
 
-  /* The places, borrowed from the app's corner dial */
-  --water: #7dd3d3;
-  --move: #e99a7c;
-  --star: #f0c25e;
-  --food: #f28b82;
-  --looks: #c2a8ec;
-  --you: #f0a6c8;
-  --weight: #d8c49a;
+  --container: 820px;
+  --gutter: 24px;
+  --hover: 150ms ease;
 
-  /* Hardware: the phone and browser frames screenshots sit in */
-  --device: #0e1426;
-  --device-bar: #212b4a;
-
-  --shadow: 0 2px 6px rgb(0 0 0 / 0.25), 0 18px 40px -20px rgb(0 0 0 / 0.7);
-
-  /* Type: the app's three families, each with one job. All SIL OFL, bundled in src/assets/fonts. */
-  --font-sans: 'Zen Maru Gothic', system-ui, sans-serif; /* everything you read */
-  --font-serif: 'Zen Old Mincho', Georgia, serif; /* titles */
-  --font-numeral: 'Instrument Serif', Georgia, serif; /* big numbers */
-
-  --text-xs: 0.8125rem;
-  --text-sm: 0.9375rem;
-  --text-base: 1.0625rem;
-  --text-lg: 1.1875rem;
-  --text-xl: 1.4375rem;
-  --text-2xl: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
-  --text-3xl: clamp(2.125rem, 1.5rem + 2.4vw, 3.125rem);
-  --text-display: clamp(3rem, 1.4rem + 6vw, 5.75rem);
-
-  /* One spacing rhythm for the whole page */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-  --space-7: 3rem;
-  --space-8: 4rem;
-  --space-9: 6rem;
-  --space-10: 8rem;
-
-  /* Corners, for the few things that aren't drawn by SoftShape */
-  --radius-card: 1.75rem;
-  --radius-tile: 1rem;
-
-  --gutter: 1rem;
-
-  /* The app's motion curves (FitMotion): a gentle settle, and a fast start with a long glide. */
-  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --glide: cubic-bezier(0.2, 0.9, 0.25, 1);
-  --spring: cubic-bezier(0.2, 1.5, 0.4, 1);
+  color-scheme: light;
 }
 
-@media (min-width: 48rem) {
-  :root {
-    --gutter: 2rem;
+:root[data-theme='dark'] {
+  --canvas: #121212;
+  --surface: #1c1c1a;
+  --ink: #e8e4dc;
+  --ink-2: #9a948b;
+  --accent: #d97d62;
+  --accent-tint: rgba(217, 125, 98, 0.14);
+  --hairline: #2a2a27;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --canvas: #121212;
+    --surface: #1c1c1a;
+    --ink: #e8e4dc;
+    --ink-2: #9a948b;
+    --accent: #d97d62;
+    --accent-tint: rgba(217, 125, 98, 0.14);
+    --hairline: #2a2a27;
+    color-scheme: dark;
   }
 }
